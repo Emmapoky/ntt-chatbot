@@ -1,8 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
 import './MessageList.js';
 import './MessageInput.js';
 import React, { useState } from 'react';
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+//Import API key from .env
+const genAI = new GoogleGenerativeAI(process.env.REACT_APP_API_KEY);
+const model = genAI.getGenerativeModel({ model: "gemini-pro"});
 
 const MessageList = ({ messages }) => {
   return (
@@ -48,14 +52,21 @@ const MessageInput = ({ onSend }) => {
 
 function App() {
   const [messages, setMessages] = useState([
-    { id: 0, sender: 'ChatGPT', message: 'Hello, I am ChatGPT!' },
+    { id: 0, sender: 'ChatGPT', message: "Hello, I am ChatGPT" },
     // ... You can add more default messages here
   ]);
 
-  const handleUserMessage = (userMessage) => {
-    const newMessage = { id: messages.length, sender: 'user', message: userMessage };
+  const handleUserMessage = async (userMessage) => {
+    const prompt = userMessage;
+  
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const text = response.text();
+    const newMessage = { id: messages.length, sender: 'user', message: text };
     setMessages([...messages, newMessage]);
+    
   };
+
 
   return (
     <div className="App">
