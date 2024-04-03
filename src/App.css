@@ -1,91 +1,150 @@
+/* Dark Mode Base Styles */
+
+/* Global resets and sizing */
+body, html, #root, .App {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #000; /* Black background for the app */
+  color: #fff; /* White text for dark theme */
+}
+
+/* Flexbox layout for the App, sidebar to the left, chat to the right */
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: row;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.App {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end; /* Aligns the chat components to the bottom */
-}
-
-.messageList {
-  overflow-y: auto;
-  flex-grow: 1;
+/* Sidebar styling */
+.sidebar {
+  width: 250px; /* Width of the sidebar */
+  background-color: #1E1E1E; /* Dark sidebar background */
   padding: 10px;
 }
 
+/* Button at the top of the sidebar for new chats */
+.new-chat-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  padding: 10px;
+  text-align: left;
+  font-size: 1.1em;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+/* Chat history items in the sidebar */
+.chat-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #333;
+  cursor: pointer;
+}
+
+/* Buttons in the sidebar for actions like clearing conversations */
+.sidebar-actions {
+  margin-top: auto; /* Pushes actions to the bottom of the sidebar */
+}
+
+.sidebar-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* Chat message list container */
+.messageList {
+  flex-grow: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+/* Individual message bubbles */
 .message {
   max-width: 60%;
   margin: 5px;
   padding: 10px;
   border-radius: 15px;
-  color: white;
 }
 
+/* Aligns ChatGPT messages to the left */
 .left {
   align-self: flex-start;
-  background-color: #007bff; /* Blue for ChatGPT messages */
+  background-color: #333;
 }
 
+/* Aligns User messages to the right */
 .right {
   align-self: flex-end;
-  background-color: #333; /* Darker for user messages */
+  background-color: #444;
 }
 
+/* Message input area */
 .messageInput {
   display: flex;
   padding: 10px;
+  background-color: #1E1E1E; /* Matching the sidebar background */
 }
 
+/* Input field for typing messages */
 .messageInput input {
   flex-grow: 1;
-  margin-right: 10px;
   padding: 10px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+  margin-right: 10px;
+  background-color: #333;
+  border: none;
+  color: #fff;
 }
 
+/* Send button */
 .messageInput button {
   padding: 10px 20px;
+  background-color: #444;
+  color: #fff;
   border: none;
   border-radius: 4px;
-  background-color: #007bff;
-  color: white;
   cursor: pointer;
+}
+
+/* Light mode adjustments */
+.light {
+  background-color: #fff; /* White background for the app */
+  color: #000; /* Black text for light theme */
+}
+
+.light .sidebar {
+  background-color: #F3F3F3; /* Light gray sidebar background */
+}
+
+.light .chat-item {
+  border-bottom-color: #DDD; /* Lighter border for chat items */
+}
+
+.light .messageList {
+  background-color: #fff; /* White background for message list */
+}
+
+.light .message.left {
+  background-color: #EEE; /* Lighter background for ChatGPT messages */
+}
+
+.light .message.right {
+  background-color: #F5F5F5; /* Even lighter background for user messages */
+}
+
+.light .messageInput {
+  background-color: #F3F3F3; /* Light gray background for message input */
+}
+
+.light .messageInput input {
+  background-color: #EEE;
+  color: #000;
+}
+
+.light .messageInput button {
+  background-color: #DDD;
+  color: #000;
 }

@@ -50,29 +50,100 @@ const MessageInput = ({ onSend }) => {
   );
 };
 
+// Define the Sidebar component directly in App.js
+const Sidebar = ({ onToggleTheme }) => {
+  // Place your sidebar buttons and logic here
+  return (
+    <div className="sidebar">
+      <button onClick={onToggleTheme} className="sidebar-btn">Toggle Theme</button>
+      {/* Implement other sidebar buttons here */}
+    </div>
+  );
+};
+
 function App() {
   const [messages, setMessages] = useState([
-    { id: 0, sender: 'ChatGPT', message: "Hello, I am ChatGPT" },
-    // ... You can add more default messages here
+    { id: 0, sender: 'ChatGPT', message: 'Hello, I am ChatGPT!' },
   ]);
+  const [theme, setTheme] = useState('dark');
+  const [error, setError] = useState(''); // State to store the error message
 
   const handleUserMessage = async (userMessage) => {
-    const prompt = userMessage;
-  
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const text = response.text();
-    const newMessage = { id: messages.length, sender: 'user', message: text };
-    setMessages([...messages, newMessage]);
+    // Clear previous error messages
+    setError('');
     
+    const newUserMessage = {
+      id: messages.length,
+      sender: 'user',
+      message: userMessage,
+    };
+
+    // Add the user's message to the messages array
+    setMessages([...messages, newUserMessage]);
+
+    try {
+      // Replace with your actual API call
+      const response = await fetch('/path-to-your-api', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // Include your API key header here if necessary
+        },
+        body: JSON.stringify({ prompt: userMessage }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`API responded with status code ${response.status}`);
+      }
+
+      const data = await response.json();
+      const newAIMessage = {
+        id: messages.length + 1,
+        sender: 'ChatGPT',
+        message: data.reply, // Replace with the actual property from your response
+      };
+
+      // Add ChatGPT's response to the messages array
+      setMessages([...messages, newUserMessage, newAIMessage]);
+    } catch (err) {
+      console.error("An error occurred:", err);
+      setError('Failed to get a response from the server. Please try again later.');
+    }
   };
 
+  // Function to toggle the theme
+  const handleToggleTheme = () => {
+    setTheme(prevTheme => prevTheme === 'dark' ? 'light' : 'dark');
+  };
 
   return (
-    <div className="App">
-      {/* Remove the header and other contents to make room for the chat UI */}
-      <MessageList messages={messages} />
-      <MessageInput onSend={handleUserMessage} />
+    <div className={`App ${theme}`}>
+      <Sidebar onToggleTheme={handleToggleTheme} />
+      <div className="chat-area">
+        {/* Error message display */}
+        {error && <div className="error-message">{error}</div>}
+        
+        {/* Message list display */}
+        <div className="messageList">
+          {messages.map((message, i) => (
+            <div key={i} className={`message ${message.sender === 'ChatGPT' ? 'left' : 'right'}`}>
+              {message.message}
+            </div>
+          ))}
+        </div>
+
+        {/* Message input field */}
+        <div className="messageInput">
+          <input 
+            type="text" 
+            placeholder="Type Message here" 
+            value={input} 
+            onChange={(e) => setInput(e.target.value)}
+            onKeyPress={(event) => event.key === 'Enter' && handleSend()}
+          />
+          <button onClick={handleSend}>Send</button>
+        </div>
+      </div>
     </div>
   );
 }
