@@ -1,80 +1,59 @@
-import './App.css';
-import './MessageList.js';
-import './MessageInput.js';
 import React, { useState } from 'react';
+import './App.css';
+import MessageList from './MessageList'; // Importing MessageList component
+import MessageInput from './MessageInput'; // Importing MessageInput component
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-//Import API key from .env
+// Initialize the API model
 const genAI = new GoogleGenerativeAI(process.env.REACT_APP_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-pro"});
-
-function MessageList({ messages }) {
-  return (
-    <div className="messageList">
-      {messages.map((msg, index) => (
-        <div key={index} className={`message ${msg.sender === "ChatGPT" ? "left" : "right"}`}>
-          {msg.message}
-        </div>
-      ))}
-    </div>
-  );
-}
-
-const MessageInput = ({ onSend }) => {
-  const [input, setInput] = useState('');
-
-  const handleSend = () => {
-    if (input.trim()) {
-      onSend(input);
-      setInput(''); // Clear the input after sending
-    }
-  };
-
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      handleSend();
-    }
-  };
-
-  return (
-    <div className="messageInput">
-      <input 
-        type="text" 
-        placeholder="Type Message here" 
-        value={input} 
-        onChange={(e) => setInput(e.target.value)}
-        onKeyPress={handleKeyPress}
-      />
-      <button onClick={handleSend}>Send</button>
-    </div>
-  );
-};
+const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 function App() {
-  const [messages, setMessages] = useState([
-    { id: 0, sender: 'ChatGPT', message: "Hello, I am ChatGPT" },
-    // ... You can add more default messages here
-  ]);
+  const [messages, setMessages] = useState([]);
+  const [error, setError] = useState('');
 
   const handleUserMessage = async (userMessage) => {
-    const prompt = userMessage;
-  
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const text = response.text();
-    const newMessage = { id: messages.length, sender: 'user', message: text };
-    setMessages([...messages, newMessage]);
-    
+    // Omitting the part where we add user's message to state, as we now do this in MessageInput
+
+    try {
+      const result = await model.generateContent({ prompt: userMessage });
+      const aiMessage = result.choices[0].message;
+      // Add AI response to the conversation
+      setMessages(currentMessages => [...currentMessages, { id: currentMessages.length, sender: 'Gemini', message: aiMessage }]);
+      
+    } catch (error) {
+        console.error("Error getting response from AI:", error);
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          console.error(error.response.data);
+          console.error(error.response.status);
+          console.error(error.response.headers);
+        } else if (error.request) {
+          // The request was made but no response was received
+          console.error(error.request);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.error('Error', error.message);
+        }
+        setError('Failed to get a response. Please try again later.');
+      }
+      
   };
 
+  // Function to clear the error message, can be used as a callback
+  function clearError() {
+    return setError('');
+  }
 
   return (
     <div className="App">
-      {/* Remove the header and other contents to make room for the chat UI */}
+      {error && <div className="error-message">{error}</div>}
       <MessageList messages={messages} />
-      <MessageInput onSend={handleUserMessage} />
+      <MessageInput onSend={handleUserMessage} clearError={clearError} />
     </div>
   );
 }
 
 export default App;
+

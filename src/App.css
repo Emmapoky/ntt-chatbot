@@ -1,91 +1,113 @@
+/* Color Scheme Adjustments */
+body, html {
+  background-color: #121212; /* Dark background color */
+  color: #ffffff; /* White text color */
+}
+
 .App {
-  text-align: left;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.App {
+  flex-direction: collumn;
   height: 100vh;
+}
+
+/* Message List Styles */
+.messageList {
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end; /* Aligns the chat components to the bottom */
 }
 
-.messageList {
-  overflow-y: auto;
-  flex-grow: 1;
-  padding: 10px;
-}
-
+/* Message Bubble Styles */
 .message {
   max-width: 60%;
-  margin: 5px;
+  margin-bottom: 10px;
   padding: 10px;
-  border-radius: 15px;
-  color: white;
+  border-radius: 20px;
+  position: relative;
 }
 
-.left {
-  align-self: flex-start;
-  background-color: #007bff; /* Blue for ChatGPT messages */
+/* User message bubble */
+.user-message {
+  background-color: #5D5D5D; /* Adjust to match design */
+  align-self: flex-end; /* Align to the right */
 }
 
-.right {
-  align-self: flex-end;
-  background-color: #333; /* Darker for user messages */
+/* AI message bubble */
+.ai-message {
+  background-color: #393E46; /* Adjust to match design */
+  align-self: flex-start; /* Align to the left */
 }
 
+/* Input Area Styles */
 .messageInput {
   display: flex;
-  padding: 10px;
+  align-items: center;
+  background-color: #121212; /* Darker background for input area */
+  padding: 20px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0; /* Ensures the div stretches across the full width */
 }
 
 .messageInput input {
   flex-grow: 1;
-  margin-right: 10px;
-  padding: 10px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+  padding: 15px;
+  background-color: #262626; /* Match body background */
+  color: white;
+  border: none;
+  border-radius: 10px;
+  margin-right: 10px; 
+  margin-left: 170px; 
+  max-width: calc(100% - 420px);
 }
 
 .messageInput button {
-  padding: 10px 20px;
+  background-color: transparent;
   border: none;
-  border-radius: 4px;
-  background-color: #007bff;
-  color: white;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  margin-left: 0;
+}
+
+/* Add the send icon to the button */
+.send-icon {
+  width:30px; /* You can adjust if you want a larger icon */
+  height: 30px; /* You can adjust if you want a larger icon */
+  background-image: url('C:\Users\erwyna.soo\Downloads\react-js-code-template\src\img\SendIcon.svg'); /* Ensure the path is correct */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Avatar Circle Styles */
+.avatar-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid white;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.user .avatar-circle {
+  right: -30px; /* Position outside the user message bubble */
+}
+
+.ai .avatar-circle {
+  left: -30px; /* Position outside the AI message bubble */
+}
+
+/* Placeholder color change */
+::placeholder {
+  color: #A8A8A8; /* Light grey placeholder text */
+}
+
+/* Hide the browser's default input styles */
+input:focus, button:focus {
+  outline: none;
 }
