@@ -28,13 +28,13 @@ body, html {
 
 /* User message bubble */
 .user-message {
-  background-color: #5D5D5D; /* Adjust to match design */
+  background-color: #b96585; /* Adjust to match design */
   align-self: flex-end; /* Align to the right */
 }
 
 /* AI message bubble */
 .ai-message {
-  background-color: #393E46; /* Adjust to match design */
+  background-color: #8878CA; /* Adjust to match design */
   align-self: flex-start; /* Align to the left */
 }
 

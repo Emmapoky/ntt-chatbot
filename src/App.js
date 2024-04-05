@@ -1,59 +1,77 @@
+import { ChatContainer, MainContainer, Message, MessageInput, MessageList, TypingIndicator } from '@chatscope/chat-ui-kit-react'; // Assuming MessageInput is part of your chat UI kit
+import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import React, { useState } from 'react';
 import './App.css';
-import MessageList from './MessageList'; // Importing MessageList component
-import MessageInput from './MessageInput'; // Importing MessageInput component
-import { GoogleGenerativeAI } from "@google/generative-ai";
 
-// Initialize the API model
 const genAI = new GoogleGenerativeAI(process.env.REACT_APP_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 function App() {
+  // State to manage the typing indicator of the chatbot
+  const [isChatbotTyping, setIsChatbotTyping] = useState(false);
+ 
+  // State to store chat messages
   const [messages, setMessages] = useState([]);
-  const [error, setError] = useState('');
 
   const handleUserMessage = async (userMessage) => {
-    // Omitting the part where we add user's message to state, as we now do this in MessageInput
-
+    setMessages(currentMessages => [...currentMessages, { id: currentMessages.length, sender: 'user', message: userMessage }]);
+    // Activate the typing indicator
+    setIsChatbotTyping(true);
     try {
-      const result = await model.generateContent({ prompt: userMessage });
-      const aiMessage = result.choices[0].message;
-      // Add AI response to the conversation
-      setMessages(currentMessages => [...currentMessages, { id: currentMessages.length, sender: 'Gemini', message: aiMessage }]);
-      
+      const prompt = userMessage;
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      const text = response.text();
+      const newMessage = { id: messages.length + 1, sender: 'Gemini', message: text };
+
+      // Add the AI's response to the chat
+      setMessages(currentMessages => [...currentMessages, newMessage]);
     } catch (error) {
-        console.error("Error getting response from AI:", error);
-        if (error.response) {
-          // The request was made and the server responded with a status code
-          // that falls out of the range of 2xx
-          console.error(error.response.data);
-          console.error(error.response.status);
-          console.error(error.response.headers);
-        } else if (error.request) {
-          // The request was made but no response was received
-          console.error(error.request);
-        } else {
-          // Something happened in setting up the request that triggered an Error
-          console.error('Error', error.message);
-        }
-        setError('Failed to get a response. Please try again later.');
-      }
-      
+      console.error("Error processing user message with Gemini API:", error);
+    } finally {
+      // Deactivate the typing indicator 
+      setIsChatbotTyping(false);
+    }
   };
 
-  // Function to clear the error message, can be used as a callback
-  function clearError() {
-    return setError('');
-  }
-
   return (
-    <div className="App">
-      {error && <div className="error-message">{error}</div>}
-      <MessageList messages={messages} />
-      <MessageInput onSend={handleUserMessage} clearError={clearError} />
-    </div>
+    <>
+      {/* A container for the chat window */}
+      <div style={{ position: "relative", height: "100vh" }}>
+        <MainContainer>
+          <ChatContainer>
+            {/* Display chat messages and typing indicator */}
+            <MessageList
+              typingIndicator={
+                isChatbotTyping ? (
+                  <TypingIndicator content="Gemini is thinking" />
+                ) : null
+              }
+            >
+              {/* Map through chat messages and render each message */}
+              {messages.map((message, i) => {
+                return (
+                  <Message
+                    key={i}
+                    model={message}
+                    style={
+                      message.sender === "Gemini" ? { textAlign: "left" } : {}
+                    }
+                  />
+                );
+              })}
+            </MessageList>
+            {/* Input field for the user to type messages */}
+            <MessageInput
+              placeholder="Type Message here"
+              onSend={handleUserMessage}
+            />
+          </ChatContainer>
+        </MainContainer>
+      </div>
+    </>
   );
-}
-
-export default App;
-
+ }
+ 
+ export default App;
