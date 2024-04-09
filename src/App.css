@@ -1,113 +1,50 @@
-/* Color Scheme Adjustments */
-body, html {
-  background-color: #121212; /* Dark background color */
-  color: #ffffff; /* White text color */
-}
-
-.App {
-  display: flex;
-  flex-direction: collumn;
-  height: 100vh;
-}
-
-/* Message List Styles */
-.messageList {
-  padding: 20px;
+/* Full-screen app container */
+.app-container {
   display: flex;
   flex-direction: column;
-}
-
-/* Message Bubble Styles */
-.message {
-  max-width: 60%;
-  margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 20px;
+  justify-content: flex-end; /* Aligns the chat components to the bottom */
+  height: 100vh;
   position: relative;
+  background-color: #131314; /* Change to desired background color */
 }
 
-/* User message bubble */
-.user-message {
-  background-color: #b96585; /* Adjust to match design */
-  align-self: flex-end; /* Align to the right */
+/* Chat container styles */
+.custom-chat-container {
+  width: 100%; /* Full width */
+  flex-grow: 1; /* Takes up all available space */
+  padding: 1rem;
+  overflow-y: auto; /* Makes the chat scrollable */
 }
 
-/* AI message bubble */
-.ai-message {
-  background-color: #8878CA; /* Adjust to match design */
-  align-self: flex-start; /* Align to the left */
+/* Message input area styles */
+.custom-message-input-container {
+  width: 100%; /* One third of the container width */
+  margin: 0 auto; /* Center the message input container */
+  background-color: #404040; /* Background color for message input */
+  padding: 1rem;
 }
 
-/* Input Area Styles */
-.messageInput {
-  display: flex;
-  align-items: center;
-  background-color: #121212; /* Darker background for input area */
-  padding: 20px;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0; /* Ensures the div stretches across the full width */
+/* Styles for the message list to show messages */
+.custom-message-list {
+  margin-bottom: 1rem; /* Space above the message input area */
 }
 
-.messageInput input {
-  flex-grow: 1;
-  padding: 15px;
-  background-color: #262626; /* Match body background */
-  color: white;
-  border: none;
-  border-radius: 10px;
-  margin-right: 10px; 
-  margin-left: 170px; 
-  max-width: calc(100% - 420px);
+/* Message component styles */
+.message {
+  background-color: #8878CA; 
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 1rem;
+  max-width: 80%;
 }
 
-.messageInput button {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  margin-left: 0;
+/* Different background for user and Gemini messages */
+.message-user {
+  align-self: flex-end;
+  background-color: #B96585; 
 }
 
-/* Add the send icon to the button */
-.send-icon {
-  width:30px; /* You can adjust if you want a larger icon */
-  height: 30px; /* You can adjust if you want a larger icon */
-  background-image: url('C:\Users\erwyna.soo\Downloads\react-js-code-template\src\img\SendIcon.svg'); /* Ensure the path is correct */
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-/* Avatar Circle Styles */
-.avatar-circle {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 2px solid white;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.user .avatar-circle {
-  right: -30px; /* Position outside the user message bubble */
-}
-
-.ai .avatar-circle {
-  left: -30px; /* Position outside the AI message bubble */
-}
-
-/* Placeholder color change */
-::placeholder {
-  color: #A8A8A8; /* Light grey placeholder text */
-}
-
-/* Hide the browser's default input styles */
-input:focus, button:focus {
-  outline: none;
+.message-gemini {
+  align-self: flex-start;
+  background-color: #8878CA; 
 }

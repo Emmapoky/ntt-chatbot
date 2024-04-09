@@ -1,17 +1,18 @@
+// Render a list of message components
 import React from 'react';
-import './App'; 
+import Message from './Message';
 
-function MessageList({ messages }) {
+const MessageList = ({ messages }) => {
+  // Ensure messages is always treated as an array
+  const safeMessages = messages || [];
+
   return (
-    <div className="messageList">
-      {messages.map((msg, index) => (
-        <div key={index} className={`message ${msg.sender === "ChatGPT" ? "left" : "right"}`}>
-          {msg.message}
-        </div>
+    <div className="message-list">
+      {safeMessages.map((message, index) => (
+        <Message key={index} model={message} />
       ))}
     </div>
   );
-}
+};
 
 export default MessageList;
-

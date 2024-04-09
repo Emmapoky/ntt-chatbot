@@ -1,42 +1,27 @@
 import React, { useState } from 'react';
-import './App'; 
 
-const MessageInput = ({ onSend, clearError }) => {
+const MessageInput = ({ onSend }) => {
   const [input, setInput] = useState('');
 
   const handleSend = () => {
     if (input.trim()) {
-      // Clear any previous error messages before sending a new message
-      if (clearError) {
-        clearError();
-      }
-
-      // Send the message input to the parent component to handle
-      onSend(input.trim());
-      setInput(''); // Clear the input after sending
-    }
-  };
-
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      handleSend();
+      onSend(input);
+      setInput(''); // Clear the input field
     }
   };
 
   return (
-    <div className="messageInput">
-      <input 
-        type="text" 
-        placeholder="Type message here" 
-        value={input} 
+    <div className="message-input">
+      <input
+        type="text"
+        placeholder="Type your message here"
+        value={input}
         onChange={(e) => setInput(e.target.value)}
-        onKeyPress={handleKeyPress}
+        onKeyPress={(e) => e.key === 'Enter' && handleSend()}
       />
-      {/* Updated button to use the send icon class */}
-      <button onClick={handleSend} className="send-icon"></button>
+      <button onClick={handleSend}>Send</button>
     </div>
   );
 };
 
 export default MessageInput;
-
