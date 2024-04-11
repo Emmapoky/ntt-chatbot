@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import sendIcon from './img/SendIcon.svg'; 
 
 const MessageInput = ({ onSend }) => {
   const [input, setInput] = useState('');
@@ -11,15 +12,18 @@ const MessageInput = ({ onSend }) => {
   };
 
   return (
-    <div className="message-input">
+    <div className="message-input-container">
       <input
+        className="input-field"
         type="text"
-        placeholder="Type your message here"
+        placeholder="Message Gemini..."
         value={input}
         onChange={(e) => setInput(e.target.value)}
         onKeyPress={(e) => e.key === 'Enter' && handleSend()}
       />
-      <button onClick={handleSend}>Send</button>
+      <button className="send-button" onClick={handleSend}>
+        <img src={sendIcon} alt="Send" /> {}
+      </button>
     </div>
   );
 };

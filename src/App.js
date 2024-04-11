@@ -39,6 +39,7 @@ function App() {
         ...currentMessages,
         newMessage
       ]);
+
     } catch (error) {
       console.error("Error processing user message with Gemini API:", error);
       setMessages(currentMessages => [
@@ -52,16 +53,13 @@ function App() {
   
   return (
     <div className="app-container">
-    {messages.map((message, index) => (
-        <div key={index} className={`message message-${message.sender}`}>
-          <p>{message.message}</p>
-        </div>
-    ))}
       <MainContainer>
         <ChatContainer>
           <MessageList messages={messages} />
-          {isChatbotTyping && <TypingIndicator/>}
-          <MessageInput onSend={handleUserMessage} />
+          {isChatbotTyping && <TypingIndicator />}
+          <div className="custom-message-input-container">
+            <MessageInput onSend={handleUserMessage} />
+          </div>
         </ChatContainer>
       </MainContainer>
     </div>

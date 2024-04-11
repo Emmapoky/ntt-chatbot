@@ -2,49 +2,90 @@
 .app-container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end; /* Aligns the chat components to the bottom */
   height: 100vh;
-  position: relative;
-  background-color: #131314; /* Change to desired background color */
+  background-color: #131314;
 }
 
 /* Chat container styles */
 .custom-chat-container {
-  width: 100%; /* Full width */
-  flex-grow: 1; /* Takes up all available space */
-  padding: 1rem;
+  flex-grow: 1;
   overflow-y: auto; /* Makes the chat scrollable */
+  margin-bottom: 72px; /* Space for the input bar */
+  position: relative; /* Changed from fixed to relative */
 }
 
-/* Message input area styles */
-.custom-message-input-container {
-  width: 100%; /* One third of the container width */
-  margin: 0 auto; /* Center the message input container */
-  background-color: #404040; /* Background color for message input */
-  padding: 1rem;
+.message-input-container {
+  display: flex; 
+  align-items: center; /* Center items vertically */
+  position: fixed; 
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1.5rem; 
+  width: 70%; 
+}
+
+.input-field {
+  width: 100%; /* Full width of its container */
+  padding: 15px; /* Comfortable padding around the text */
+  font-size: 1.2rem; /* Larger text size */
+  border-radius: 10px; /* Rounded corners (optional) */
+  margin-right: 10px; /* Space before the send button */
+  border: none;
+  background-color: #474747;
+  color: #FFFFFF;
+}
+
+.input-field::placeholder {
+  color: #dfd7fd; /* Light purple color for placeholder text */
+}
+
+.send-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0; /* Remove padding if you want the image size to control the button size */
+}
+
+.send-button img {
+  width: 65px; 
+  height: 65px;
+  display: block; /* Remove any default inline styles */
 }
 
 /* Styles for the message list to show messages */
 .custom-message-list {
-  margin-bottom: 1rem; /* Space above the message input area */
+  padding-left: 20rem;
+  padding-right: 20rem;
+  padding-top: 2rem;
+  overflow-y: auto; /* Scrollable message list */
 }
 
-/* Message component styles */
+/* Individual message container */
 .message {
-  background-color: #8878CA; 
-  padding: 0.5rem 1rem;
-  margin-bottom: 0.5rem;
-  border-radius: 1rem;
-  max-width: 80%;
+  display: flex;
+  padding: 0.5rem;
+  border-radius: 10px;
+  word-wrap: break-word; /* Ensures text wraps within the container */
+  margin-bottom: 1rem; /* Vertical space between messages */
+  max-width: 40%; /* Adjusted for narrower messages */
+  min-width: 80%; /* Adjust minimum width as needed */
+  align-items: center;
 }
 
-/* Different background for user and Gemini messages */
 .message-user {
-  align-self: flex-end;
-  background-color: #B96585; 
+  background-color: #B96585;
+  margin-right: auto; /* Align to the right */
 }
 
 .message-gemini {
-  align-self: flex-start;
-  background-color: #8878CA; 
+  background-color: #8878CA;
+  margin-left: auto; /* Align to the left */
+}
+
+/* Styles for the TypingIndicator */
+.typing-indicator {
+  color: white;
+  padding: 0.5rem;
+  font-style: italic;
 }

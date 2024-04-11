@@ -3,12 +3,9 @@ import React from 'react';
 import Message from './Message';
 
 const MessageList = ({ messages }) => {
-  // Ensure messages is always treated as an array
-  const safeMessages = messages || [];
-
   return (
-    <div className="message-list">
-      {safeMessages.map((message, index) => (
+    <div className="custom-message-list">
+      {messages.map((message, index) => (
         <Message key={index} model={message} />
       ))}
     </div>
