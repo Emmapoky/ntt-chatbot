@@ -4,40 +4,57 @@
   flex-direction: column;
   height: 100vh;
   background-color: #131314;
+  position: relative;
 }
 
 /* Chat container styles */
 .custom-chat-container {
   flex-grow: 1;
   overflow-y: auto; /* Makes the chat scrollable */
-  margin-bottom: 72px; /* Space for the input bar */
+  flex-grow: 1;
   position: relative; /* Changed from fixed to relative */
 }
 
 .message-input-container {
-  display: flex; 
-  align-items: center; /* Center items vertically */
-  position: fixed; 
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 1.5rem; 
-  width: 70%; 
+  background-color: transparent; /* Transparent background for blending with any background */
+  display: flex; /* Uses flexbox for flexible layout */
+  align-items: center; /* Centers items vertically within the container */
+  position: fixed; /* Fixed position to keep it at the bottom */
+  bottom: 0; /* Positions at the bottom of the viewport */
+  left: 50%; /* Centers horizontally */
+  transform: translateX(-50%); /* Corrects the center alignment */
+  width: 65%; /* Adjust this value to increase or decrease the width of the input container */
+  padding-bottom: 40px;
 }
 
 .input-field {
-  width: 100%; /* Full width of its container */
-  padding: 15px; /* Comfortable padding around the text */
-  font-size: 1.2rem; /* Larger text size */
-  border-radius: 10px; /* Rounded corners (optional) */
-  margin-right: 10px; /* Space before the send button */
-  border: none;
-  background-color: #474747;
-  color: #FFFFFF;
+  flex-grow: 1; /* Takes up available space in the flex container */
+  padding: 20px 40px; /* Increases padding, especially on the left and right sides */
+  font-size: 1.3rem; /* Sets the size of the text */
+  border-radius: 17px; /* Rounds the corners of the input field */
+  background-color: #474747; /* Sets the background color of the input field */
+  color: #FFFFFF; /* Sets the text color */
+  line-height: 0.5; /* Adjusts the line height for vertical rhythm */
+  min-height: 22px; /* Minimum height to start */
+  max-height: 200px; /* Maximum height before scrolling */
+  overflow: hidden; /* Hides the scrollbar until focused */
+  outline: none; /* Removes the outline to clean up style */
+  border: none; /* Removes the border */
+  display: flex; /* Uses flexbox to center text vertically */
+  align-items: center; /* Centers the text vertically */
+  justify-content: flex-start; /* Aligns the text to the start horizontally */
+  white-space: pre-wrap; /* Allows text wrapping and whitespace preservation */
+  resize: none; /* Disables manual resizing */
+  width: 70%; /* Ensures the textarea takes the full width of its container */
+}
+
+.input-field:focus {
+  overflow-y: auto;
 }
 
 .input-field::placeholder {
-  color: #dfd7fd; /* Light purple color for placeholder text */
+  color: #aeaeae;
+  opacity: 1; /* Ensure placeholder is always visible until focus */
 }
 
 .send-button {
@@ -49,22 +66,20 @@
 
 .send-button img {
   width: 65px; 
-  height: 65px;
-  display: block; /* Remove any default inline styles */
+  height: auto;
 }
 
 /* Styles for the message list to show messages */
 .custom-message-list {
-  padding-left: 20rem;
-  padding-right: 20rem;
-  padding-top: 2rem;
-  overflow-y: auto; /* Scrollable message list */
+  flex-grow: 1;
+  padding: 1rem 20rem; /* Adjusted padding */
+  overflow-y: auto; /* scrollable message list */
+  background-color: #131314; /* background color matches app container */
 }
 
 /* Individual message container */
 .message {
   display: flex;
-  padding: 0.5rem;
   border-radius: 10px;
   word-wrap: break-word; /* Ensures text wraps within the container */
   margin-bottom: 1rem; /* Vertical space between messages */
@@ -74,13 +89,18 @@
 }
 
 .message-user {
-  background-color: #B96585;
+  background-color: #1f1f1f;
   margin-right: auto; /* Align to the right */
+  color: white;
 }
 
 .message-gemini {
-  background-color: #8878CA;
+  background-color: #508be5;
   margin-left: auto; /* Align to the left */
+}
+
+.message-user, .message-gemini {
+  padding-left: 30px; /* Increase left padding */
 }
 
 /* Styles for the TypingIndicator */
@@ -88,4 +108,5 @@
   color: white;
   padding: 0.5rem;
   font-style: italic;
+  text-align: center;
 }

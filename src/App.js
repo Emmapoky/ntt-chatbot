@@ -1,5 +1,5 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 import ChatContainer from './ChatContainer';
 import MainContainer from './MainContainer';
@@ -15,6 +15,15 @@ const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 function App() {
   const [isChatbotTyping, setIsChatbotTyping] = useState(false);
   const [messages, setMessages] = useState([]);
+  const messagesEndRef = useRef(null);  // Reference to the end of the message list
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();  // Scroll to bottom whenever messages update
+  }, [messages]);
 
   const handleUserMessage = async (userMessage) => {
     // Add the user's message to the messages array
@@ -57,6 +66,7 @@ function App() {
         <ChatContainer>
           <MessageList messages={messages} />
           {isChatbotTyping && <TypingIndicator />}
+          <div ref={messagesEndRef} />  {/* Empty div for auto-scrolling */}
           <div className="custom-message-input-container">
             <MessageInput onSend={handleUserMessage} />
           </div>
