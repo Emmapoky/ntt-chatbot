@@ -1,3 +1,10 @@
+html, body {
+  height: 100%; /* Make sure html and body cover all the available space */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  background-color: #131314; /* Set background color to match your design */
+}
+
 /* Full-screen app container */
 .app-container {
   display: flex;
@@ -23,29 +30,29 @@
   bottom: 0; /* Positions at the bottom of the viewport */
   left: 50%; /* Centers horizontally */
   transform: translateX(-50%); /* Corrects the center alignment */
-  width: 65%; /* Adjust this value to increase or decrease the width of the input container */
-  padding-bottom: 40px;
+  width: 60%; /* Adjust this value to increase or decrease the width of the input container */
+  padding-bottom: 50px;
 }
 
 .input-field {
-  flex-grow: 1; /* Takes up available space in the flex container */
-  padding: 20px 40px; /* Increases padding, especially on the left and right sides */
-  font-size: 1.3rem; /* Sets the size of the text */
-  border-radius: 17px; /* Rounds the corners of the input field */
-  background-color: #474747; /* Sets the background color of the input field */
-  color: #FFFFFF; /* Sets the text color */
-  line-height: 0.5; /* Adjusts the line height for vertical rhythm */
-  min-height: 22px; /* Minimum height to start */
-  max-height: 200px; /* Maximum height before scrolling */
-  overflow: hidden; /* Hides the scrollbar until focused */
-  outline: none; /* Removes the outline to clean up style */
-  border: none; /* Removes the border */
-  display: flex; /* Uses flexbox to center text vertically */
-  align-items: center; /* Centers the text vertically */
-  justify-content: flex-start; /* Aligns the text to the start horizontally */
-  white-space: pre-wrap; /* Allows text wrapping and whitespace preservation */
-  resize: none; /* Disables manual resizing */
-  width: 70%; /* Ensures the textarea takes the full width of its container */
+  flex-grow: 1;
+  padding: 21px 40px 21px;  /* Symmetrical padding top and bottom adjusted */
+  font-size: 1.2rem;   /* Font size */
+  border-radius: 25px; /* Border radius for rounded corners */
+  background-color: #474747; /* Background color of the input field */
+  color: #FFFFFF;      /* Text color */
+  line-height: 27px;   /* Increased line height to prevent text touching */
+  min-height: 10px;    /* Minimum height adjusted to fit initial content better */
+  max-height: 200px;   /* Maximum height before scrolling */
+  overflow: hidden;    /* Hides overflow */
+  outline: none;       /* Removes the outline */
+  border: none;        /* No border */
+  display: flex;       /* Uses flexbox to center content */
+  align-items: center; /* Vertically centers the text */
+  justify-content: flex-start; /* Aligns text to the start of the flex container */
+  white-space: pre-wrap; /* Maintains whitespace formatting */
+  resize: none;        /* Disables resize functionality */
+  width: 100%;         /* Makes sure the input field takes up 100% of its container */
 }
 
 .input-field:focus {
@@ -57,23 +64,31 @@
   opacity: 1; /* Ensure placeholder is always visible until focus */
 }
 
+/* Add styles for the send button */
 .send-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0; /* Remove padding if you want the image size to control the button size */
+  display: inline-flex; /* Helps center the icon properly */
+  align-items: center;
+  justify-content: center;
 }
 
-.send-button img {
-  width: 65px; 
-  height: auto;
+.send-button .MuiSvgIcon-root { /* This selector targets the SVG icon within the button */
+  font-size: 3rem; /* Increase the icon size */
+}
+
+.send-button:hover {
+  color: #ffffff; /* Change color on hover */
+}
+
+.send-button:press {
+  color: #508be5; /* Change color on hover */
 }
 
 /* Styles for the message list to show messages */
 .custom-message-list {
   flex-grow: 1;
-  padding: 1rem 20rem; /* Adjusted padding */
+  padding: 1rem 20rem;
   overflow-y: auto; /* scrollable message list */
+  padding-bottom: 130px; /* Additional bottom padding to create space above the input */
   background-color: #131314; /* background color matches app container */
 }
 
@@ -82,7 +97,7 @@
   display: flex;
   border-radius: 10px;
   word-wrap: break-word; /* Ensures text wraps within the container */
-  margin-bottom: 1rem; /* Vertical space between messages */
+  margin-bottom: 3rem; /* Vertical space between messages */
   max-width: 40%; /* Adjusted for narrower messages */
   min-width: 80%; /* Adjust minimum width as needed */
   align-items: center;
@@ -100,7 +115,8 @@
 }
 
 .message-user, .message-gemini {
-  padding-left: 30px; /* Increase left padding */
+  padding-left: 30px; 
+  padding-right: 30px;
 }
 
 /* Styles for the TypingIndicator */

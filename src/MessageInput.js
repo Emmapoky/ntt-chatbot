@@ -1,19 +1,23 @@
-import React, { useRef, useEffect } from 'react';
-import sendIcon from './img/SendIcon.svg';
+import React, { useEffect, useRef } from 'react';
+import IconButton from '@mui/material/IconButton';
+import SendIcon from '@mui/icons-material/Send';
 
 const MessageInput = ({ onSend }) => {
   const inputRef = useRef(null);
 
   const handleSend = (event) => {
-    if (event.key === 'Enter' && !event.shiftKey) {
-      event.preventDefault();
-      const text = inputRef.current.textContent.trim();
-      if (text) {
-        onSend(text);
-        inputRef.current.textContent = ''; // Clear the input field
+    if (event) {
+      if (event.type === 'keypress' && (event.key !== 'Enter' || event.shiftKey)) {
+        return; // If it's a keypress but not 'Enter' or if 'Shift' is held, do nothing
       }
-      adjustHeight(); // Reset height after sending
+      event.preventDefault(); // Prevents the default form submission on Enter
     }
+    const text = inputRef.current.textContent.trim();
+    if (text) {
+      onSend(text);
+      inputRef.current.textContent = ''; // Clear the input field
+    }
+    adjustHeight(); // Optionally adjust the height after sending
   };
 
   const adjustHeight = () => {
@@ -26,8 +30,23 @@ const MessageInput = ({ onSend }) => {
     textarea.style.height = `${height}px`; // Set to scrollHeight or minHeight
   };
 
+  const handleFocus = () => {
+    if (inputRef.current.textContent === 'Type your message here...') {
+      inputRef.current.textContent = '';
+    }
+  };
+
+  const handleBlur = () => {
+    if (inputRef.current.textContent === '') {
+      inputRef.current.textContent = 'Type your message here...';
+    }
+  };
+
   useEffect(() => {
     adjustHeight(true); // Adjust height initially and on window resize
+    if (inputRef.current.textContent === '') {
+      inputRef.current.textContent = 'Type your message here...'; // Set placeholder text initially
+    }
     window.addEventListener('resize', () => adjustHeight(true));
     return () => {
       window.removeEventListener('resize', () => adjustHeight(true));
@@ -36,16 +55,19 @@ const MessageInput = ({ onSend }) => {
 
   return (
     <div className="message-input-container">
-      <textarea
+      <div
         ref={inputRef}
         className="input-field"
+        contentEditable
         placeholder="Type your message here..."
-        onInput={() => adjustHeight()} // Adjust height when input changes
-        onKeyPress={handleSend}
+        onInput={adjustHeight} // Adjust height when input changes
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        onKeyPress={handleSend} // Handle Enter key
       />
-      <button className="send-button" onClick={handleSend}>
-        <img src={sendIcon} alt="Send" />
-      </button>
+      <IconButton className="send-button" onClick={handleSend} aria-label="send">
+        <SendIcon />
+      </IconButton>
     </div>
   );
 };

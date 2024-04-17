@@ -1,4 +1,5 @@
 //display an individual message
+// run npm install marked
 import React from 'react';
 import { marked } from 'marked';
 
