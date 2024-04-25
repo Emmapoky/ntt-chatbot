@@ -1,4 +1,3 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
 import React, { useState, useRef, useEffect } from 'react';
 
 import ChatContainer from './ChatContainer';
@@ -17,8 +16,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 import './App.css';
 
-const genAI = new GoogleGenerativeAI(process.env.REACT_APP_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+const OPENAI_API_KEY = process.env.REACT_APP_API_KEY;
 
 function App() {
   const [isChatbotTyping, setIsChatbotTyping] = useState(false);
@@ -51,35 +49,36 @@ function App() {
   }, [messages]);
 
   const handleUserMessage = async (userMessage) => {
-    // Add the user's message to the messages array
-    setMessages(currentMessages => [
-      ...currentMessages,
-      { id: currentMessages.length, sender: 'user', message: userMessage }
-    ]);
-  
-    // Activate the typing indicator
-    setIsChatbotTyping(true);
-  
-    try {
-      const prompt = userMessage;
-      const result = await model.generateContent(prompt);
-      const response = await result.response;
-      const text = await response.text(); 
-  
-      const newMessage = { id: messages.length + 1, sender: 'Gemini', message: text };
-      
-      // Update the messages array with the AI's response
-      setMessages(currentMessages => [
-        ...currentMessages,
-        newMessage
-      ]);
+    const newUserMessage = {
+      id: messages.length,
+      sender: 'user',
+      message: userMessage
+    };
+    setMessages([...messages, newUserMessage]);
 
+    setIsChatbotTyping(true);
+    try {
+      const response = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${OPENAI_API_KEY}`
+        },
+        body: JSON.stringify({
+          model: "gpt-3.5-turbo",
+          messages: [{role: "user", content: userMessage}]
+        })
+      });
+      const data = await response.json();
+      const newMessage = {
+        id: messages.length + 1,
+        sender: 'ChatGPT',
+        message: data.choices[0].message.content
+      };
+      setMessages(messages => [...messages, newMessage]);
     } catch (error) {
-      console.error("Error processing user message with Gemini API:", error);
-      setMessages(currentMessages => [
-        ...currentMessages,
-        { id: currentMessages.length, sender: 'Gemini', message: "An error occurred, please try again." }
-      ]);
+      console.error("Error with OpenAI API:", error);
+      setMessages(messages => [...messages, {id: messages.length, sender: 'ChatGPT', message: "An error occurred, please try again."}]);
     } finally {
       setIsChatbotTyping(false);
     }
@@ -105,7 +104,7 @@ function App() {
           <div style={{ marginRight: '10px' }}> {/* Round logo placeholder */}
             <div className="profile-icon"></div>
           </div>
-          <strong>Gemini</strong>
+          <strong>ChatGPT</strong>
         </div>
         {/* Add any additional content for the sidebar here */}
         <p>History or other controls</p>
@@ -119,7 +118,7 @@ function App() {
         aria-haspopup="true"
         onClick={handleMenuOpen}
       >
-        Gemini
+        ChatGPT
         <KeyboardArrowDownIcon />
       </IconButton>
       <Menu
