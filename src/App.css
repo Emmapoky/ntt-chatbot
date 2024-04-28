@@ -14,8 +14,8 @@ html, body {
   background-color: #131314;
 }
 
-.gemini-advanced-text {
-  color: rgb(172, 172, 172); /* Set a different color for Gemini Advanced text */
+.openai-advanced-text {
+  color: rgb(172, 172, 172); 
 }
 
 /* Ensures the header button stays highlighted when the dropdown is open */
@@ -200,7 +200,7 @@ div.header .MuiPaper-root.MuiMenu-paper {
 }
 
 /* GEMINI MESSAGE STYLE */
-.message-gemini .profile-icon {
+.message-openai .profile-icon {
   background-color: #aeaeae; 
 }
 
@@ -213,7 +213,7 @@ div.header .MuiPaper-root.MuiMenu-paper {
   word-wrap: break-word; /* Wrap text in the bubble */
 }
 
-.message-user, .message-gemini {
+.message-user, .message-openai {
   flex-direction: column;
   align-items: flex-start;
   padding-right: 80px;
@@ -223,7 +223,7 @@ div.header .MuiPaper-root.MuiMenu-paper {
   margin-left: auto; /* Align to the right */
 }
 
-.message-gemini {
+.message-openai {
   margin-left: auto; /* Align to the left */
 }
 

@@ -2,7 +2,7 @@
 import React from 'react';
 
 const TypingIndicator = () => {
-  return <div className="typing-indicator">Gemini is thinking...</div>;
+  return <div className="typing-indicator">ChatGPT is thinking...</div>;
 };
 
 export default TypingIndicator;

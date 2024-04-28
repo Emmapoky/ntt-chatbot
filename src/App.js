@@ -16,7 +16,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 import './App.css';
 
-const OPENAI_API_KEY = process.env.REACT_APP_API_KEY;
+const OPENAI_API_KEY = "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";
 
 function App() {
   const [isChatbotTyping, setIsChatbotTyping] = useState(false);
@@ -50,40 +50,56 @@ function App() {
 
   const handleUserMessage = async (userMessage) => {
     const newUserMessage = {
-      id: messages.length,
-      sender: 'user',
-      message: userMessage
+        id: messages.length,
+        sender: 'user',
+        message: userMessage
     };
     setMessages([...messages, newUserMessage]);
-
+  
     setIsChatbotTyping(true);
     try {
-      const response = await fetch("https://api.openai.com/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${OPENAI_API_KEY}`
-        },
-        body: JSON.stringify({
-          model: "gpt-3.5-turbo",
-          messages: [{role: "user", content: userMessage}]
-        })
-      });
-      const data = await response.json();
-      const newMessage = {
-        id: messages.length + 1,
-        sender: 'ChatGPT',
-        message: data.choices[0].message.content
-      };
-      setMessages(messages => [...messages, newMessage]);
+        const response = await fetch("https://api.openai.com/v1/chat/completions", {
+          method: "POST",
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${OPENAI_API_KEY}`
+          },
+          body: JSON.stringify({
+              model: "gpt-3.5-turbo",
+              messages: [{role: 'user', content: userMessage}]
+          })
+        });
+  
+        if (!response.ok) {
+          if (response.status === 429) {
+              console.error("Rate limit exceeded.");
+              // Implement retry logic or alert user to wait
+          } else {
+              const errorData = await response.json();
+              throw new Error(`API responded with status ${response.status}: ${errorData.error.message}`);
+          }
+        }
+  
+        const data = await response.json();
+  
+        if (data.choices && data.choices.length > 0 && data.choices[0].message) {
+            const newMessage = {
+                id: messages.length + 1,
+                sender: 'ChatGPT',
+                message: data.choices[0].message.content
+            };
+            setMessages(messages => [...messages, newMessage]);
+        } else {
+            throw new Error("Invalid response structure");
+        }
     } catch (error) {
-      console.error("Error with OpenAI API:", error);
-      setMessages(messages => [...messages, {id: messages.length, sender: 'ChatGPT', message: "An error occurred, please try again."}]);
+        console.error("Error with OpenAI API:", error);
+        setMessages(messages => [...messages, {id: messages.length, sender: 'ChatGPT', message: "An error occurred, please try again."}]);
     } finally {
-      setIsChatbotTyping(false);
+        setIsChatbotTyping(false);
     }
   };
-  
+
   return (
   <div className="app-container">
     {/* Sidebar button */}
@@ -92,7 +108,7 @@ function App() {
     </IconButton>
     {/* Sidebar Drawer */}
     <Drawer
-      anchor="left"
+      anchor="left "
       open={sidebarOpen}
       onClose={toggleSidebar}
       PaperProps={{
@@ -106,7 +122,6 @@ function App() {
           </div>
           <strong>ChatGPT</strong>
         </div>
-        {/* Add any additional content for the sidebar here */}
         <p>History or other controls</p>
       </div>
     </Drawer>

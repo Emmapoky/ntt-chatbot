@@ -4,7 +4,7 @@ import SendIcon from '@mui/icons-material/Send';
 
 const MessageInput = ({ onSend }) => {
   const inputRef = useRef(null);
-  const placeholder = 'Message Gemini...';
+  const placeholder = 'Message ChatGPT...';
   const [isPlaceholder, setIsPlaceholder] = useState(true);
 
   const handleSend = (event) => {
