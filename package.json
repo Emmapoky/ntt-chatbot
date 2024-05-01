@@ -6,6 +6,7 @@
     "@chatscope/chat-ui-kit-react": "^2.0.3",
     "@emotion/styled": "^11.11.5",
     "@google/generative-ai": "^0.3.1",
+    "@mui/icons-material": "^5.x.x",
     "@mui/material": "^5.15.15",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",

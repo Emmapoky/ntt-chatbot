@@ -1,4 +1,3 @@
-//test push
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import React, { useState, useRef, useEffect } from 'react';
 
@@ -98,20 +97,9 @@ function App() {
       open={sidebarOpen}
       onClose={toggleSidebar}
       PaperProps={{
-        style: { width: '240px', backgroundColor: '#131314', color: 'white' }
+        className: "drawer-paper"
       }}
-    >
-      <div style={{ padding: '20px' }}>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <div style={{ marginRight: '10px' }}> {/* Round logo placeholder */}
-            <div className="profile-icon"></div>
-          </div>
-          <strong>Gemini</strong>
-        </div>
-        {/* Add any additional content for the sidebar here */}
-        <p>History or other controls</p>
-      </div>
-    </Drawer>
+    ></Drawer>
 
     <div className="header">
       <IconButton
@@ -130,16 +118,13 @@ function App() {
         open={isMenuOpen}
         onClose={handleMenuClose}
         PaperProps={{
-          style: {
-            backgroundColor: '#2f2f2f',
-            borderRadius: 10,
-          },
+          className: "menu-paper"
         }}
       >
-        <MenuItem onClick={handleMenuClose} style={{ color: 'white' }}>
+        <MenuItem onClick={handleMenuClose}>
           Gemini
         </MenuItem>
-        <MenuItem onClick={handleMenuClose} style={{ color: 'white' }}>
+        <MenuItem onClick={handleMenuClose}>
           <span className="gemini-advanced-text">Gemini Advanced</span>
           <button className="upgrade-button">Upgrade</button>
         </MenuItem>
