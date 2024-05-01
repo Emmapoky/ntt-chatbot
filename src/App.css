@@ -2,7 +2,7 @@ html, body {
   height: 100%; /* Make sure html and body cover all the available space */
   margin: 0; /* Remove default margin */
   padding: 0; /* Remove default padding */
-  background-color: #131314; /* Set background color to match your design */
+  background-color: #1C202B; /* Set background color to match your design */
 }
 
 /* APP HEADER COMPONENTS */
@@ -11,17 +11,28 @@ html, body {
   justify-content: flex-start;
   padding-left: 70px;
   padding-top: 0.1px;
-  background-color: #131314;
+  background-color: #1C202B;
 }
 
 .openai-advanced-text {
   color: rgb(172, 172, 172); 
 }
 
+/* Header customization */
+.header-menu {
+  background-color: #2f2f2f;
+  border-radius: 10px;
+}
+
+/* Specific menu item styling */
+.menu-item-white {
+  color: white;
+}
+
 /* Ensures the header button stays highlighted when the dropdown is open */
 .header .MuiIconButton-root.Mui-focusVisible,
 .header .MuiIconButton-root:hover {
-  background-color: #2f2f2f; /* Background color for hover and active states */
+  background-color: #1C202B; /* Background color for hover and active states */
   border-radius: 4px; /* Rounded border shape */
 }
 
@@ -37,7 +48,7 @@ div.header .MuiPaper-root.MuiMenu-paper {
 
 /* Ensures the header button stays highlighted when the dropdown is open */
 .header .MuiIconButton-root.Mui-focusVisible {
-  background-color: #2f2f2f; /* Maintain background color when dropdown is active */
+  background-color: #1C202B; /* Maintain background color when dropdown is active */
 }
 
 .upgrade-button {
@@ -55,7 +66,7 @@ div.header .MuiPaper-root.MuiMenu-paper {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: #131314;
+  background-color: #1C202B;
   position: relative;
 }
 
@@ -76,14 +87,26 @@ div.header .MuiPaper-root.MuiMenu-paper {
   color: white;
 }
 
+/* Custom styles for sidebar and main content */
+.profile-icon-container {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.profile-icon-margin {
+  margin-right: 10px;
+}
+
 .sidebar-toggle-button:hover {
   background-color: #ffffff; /* Lighter shade on hover */
 }
 
 /* DRAWER STYLES */
 .drawer-paper {
+  width: 240px;
   background-color: white; /* Set background color of sidebar to white */
-  color: black; /* Set text color to black for visibility */
+  color: rgb(255, 255, 255); /* Set text color to black for visibility */
   height: calc(100% - 100px); /* Adjust height to make it vertically wider */
   top: 50px; /* Adjust top position if necessary */
 }
@@ -96,7 +119,6 @@ div.header .MuiPaper-root.MuiMenu-paper {
 }
 
 .message-input-container {
-  background-color: #131314; /* Transparent background for blending with any background */
   display: flex; /* Uses flexbox for flexible layout */
   align-items: center; /* Centers items vertically within the container */
   position: fixed; /* Fixed position to keep it at the bottom */
@@ -112,30 +134,30 @@ div.header .MuiPaper-root.MuiMenu-paper {
   padding: 21px 40px 21px;  /* Symmetrical padding top and bottom adjusted */
   margin-right: 6px; /* Space between input field and button */
   font-size: 1.2rem;   /* Font size */
-  border-radius: 25px; /* Border radius for rounded corners */
-  background-color: #474747; /* Background color of the input field */
-  color: #FFFFFF;      /* Text color */
+  border-radius: 20px; /* Border radius for rounded corners */
+  background-color: #252B39; /* Background color of the input field */
+  color: #A098C4;;      /* Text color */
   line-height: 27px;   /* Increased line height to prevent text touching */
   min-height: 10px;    /* Minimum height adjusted to fit initial content better */
   max-height: 200px;   /* Maximum height before scrolling */
-  overflow: hidden;    /* Hides overflow */
-  outline: none;       /* Removes the outline */
-  border: none;        /* No border */
+  overflow: hidden;    /* Hides overflow */    
   display: flex;       /* Uses flexbox to center content */
   align-items: center; /* Vertically centers the text */
   justify-content: flex-start; /* Aligns text to the start of the flex container */
   white-space: pre-wrap; /* Maintains whitespace formatting */
   resize: none;        /* Disables resize functionality */
   width: 100%;         /* Makes sure the input field takes up 100% of its container */
+  border: 1.7px solid #DDDDDD; /* Initial border color */
+  outline: none; /* Removes the default focus outline */
 }
 
 /* MESSAGE GEMINI PLACEHOLDER */
 .input-field:focus {
+  border-color: #FFFFFF; /* Changes the border color to brighter white on focus */
   overflow-y: auto;
 }
 
 .input-field::placeholder {
-  color: #aeaeae;
   opacity: 1; /* Ensure placeholder is always visible until focus */
 }
 

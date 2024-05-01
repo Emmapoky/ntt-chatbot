@@ -101,75 +101,66 @@ function App() {
   };
 
   return (
-  <div className="app-container">
-    {/* Sidebar button */}
-    <IconButton className="sidebar-toggle-button" onClick={toggleSidebar} aria-label="open sidebar">
+    <div className="app-container">
+      {/* Sidebar button */}
+      <IconButton className="sidebar-toggle-button" onClick={toggleSidebar} aria-label="open sidebar">
         <KeyboardArrowRightIcon />
-    </IconButton>
-    {/* Sidebar Drawer */}
-    <Drawer
-      anchor="left "
-      open={sidebarOpen}
-      onClose={toggleSidebar}
-      PaperProps={{
-        style: { width: '240px', backgroundColor: '#131314', color: 'white' }
-      }}
-    >
-      <div style={{ padding: '20px' }}>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <div style={{ marginRight: '10px' }}> {/* Round logo placeholder */}
+      </IconButton>
+      {/* Sidebar Drawer */}
+      <Drawer
+        anchor="left"
+        open={sidebarOpen}
+        onClose={toggleSidebar}
+        classes={{ paper: "drawer-paper" }}
+      >
+        <div className="profile-icon-container">
+          <div className="profile-icon-margin">
             <div className="profile-icon"></div>
           </div>
           <strong>ChatGPT</strong>
         </div>
         <p>History or other controls</p>
+      </Drawer>
+
+      <div className="header">
+        <IconButton
+          aria-label="more"
+          aria-controls="long-menu"
+          aria-haspopup="true"
+          onClick={handleMenuOpen}
+        >
+          ChatGPT
+          <KeyboardArrowDownIcon />
+        </IconButton>
+        <Menu
+          id="long-menu"
+          anchorEl={anchorEl}
+          keepMounted
+          open={isMenuOpen}
+          onClose={handleMenuClose}
+          classes={{ paper: "header-menu" }}
+        >
+          <MenuItem onClick={handleMenuClose} className="menu-item-white">
+            Gemini
+          </MenuItem>
+          <MenuItem onClick={handleMenuClose} className="menu-item-white">
+            <span className="gemini-advanced-text">Gemini Advanced</span>
+            <button className="upgrade-button">Upgrade</button>
+          </MenuItem>
+        </Menu>
       </div>
-    </Drawer>
 
-    <div className="header">
-      <IconButton
-        aria-label="more"
-        aria-controls="long-menu"
-        aria-haspopup="true"
-        onClick={handleMenuOpen}
-      >
-        ChatGPT
-        <KeyboardArrowDownIcon />
-      </IconButton>
-      <Menu
-        id="long-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={isMenuOpen}
-        onClose={handleMenuClose}
-        PaperProps={{
-          style: {
-            backgroundColor: '#2f2f2f',
-            borderRadius: 10,
-          },
-        }}
-      >
-        <MenuItem onClick={handleMenuClose} style={{ color: 'white' }}>
-          Gemini
-        </MenuItem>
-        <MenuItem onClick={handleMenuClose} style={{ color: 'white' }}>
-          <span className="gemini-advanced-text">Gemini Advanced</span>
-          <button className="upgrade-button">Upgrade</button>
-        </MenuItem>
-      </Menu>
+      <MainContainer>
+        <ChatContainer>
+          <MessageList messages={messages} />
+          {isChatbotTyping && <TypingIndicator />}
+          <div ref={messagesEndRef} />
+          <div className="custom-message-input-container">
+            <MessageInput onSend={handleUserMessage} />
+          </div>
+        </ChatContainer>
+      </MainContainer>
     </div>
-
-    <MainContainer>
-      <ChatContainer>
-        <MessageList messages={messages} />
-        {isChatbotTyping && <TypingIndicator />}
-        <div ref={messagesEndRef} />
-        <div className="custom-message-input-container">
-          <MessageInput onSend={handleUserMessage} />
-        </div>
-      </ChatContainer>
-    </MainContainer>
-  </div>
   );
 }
 
