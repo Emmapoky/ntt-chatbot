@@ -18,6 +18,24 @@ html, body {
   color: rgb(172, 172, 172); 
 }
 
+/* DISCLAIMER TEXT*/
+.disclaimer {
+  text-align: center;
+  width: 100%; 
+  position: fixed;
+  bottom: 0;
+  opacity: 0.4;
+  color: #ffffff; 
+  margin-bottom: 7px; /* Spacing above the disclaimer */
+  font-size: 14px; /* Font size for disclaimer text */
+  padding: 10px 0; /* Padding for spacing */
+}
+
+.privacy-link {
+  text-decoration: underline; /* Underlines the privacy link */
+  cursor: pointer; /* Changes cursor to pointer to indicate clickability */
+}
+
 /* Header customization */
 .header-menu {
   background-color: #2f2f2f;
@@ -27,11 +45,6 @@ html, body {
 /* Specific menu item styling */
 .menu-item-white {
   color: white;
-}
-
-.menu-paper {
-  background-color: #2f2f2f;
-  border-radius: 10px;
 }
 
 /* Ensures the header button stays highlighted when the dropdown is open */
@@ -122,48 +135,48 @@ div.header .MuiPaper-root.MuiMenu-paper {
   overflow-y: auto; /* Makes the chat scrollable */
   position: relative; /* Changed from fixed to relative */
 }
-
 .message-input-container {
-  display: flex; /* Uses flexbox for flexible layout */
-  align-items: center; /* Centers items vertically within the container */
-  position: fixed; /* Fixed position to keep it at the bottom */
-  bottom: 0; /* Positions at the bottom of the viewport */
-  left: 50%; /* Centers horizontally */
-  transform: translateX(-50%); /* Corrects the center alignment */
-  width: 60%; /* Adjust this value to increase or decrease the width of the input container */
+  display: flex;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
   padding-bottom: 50px;
 }
 
 .input-field {
   flex-grow: 1;
-  padding: 21px 40px 21px;  /* Symmetrical padding top and bottom adjusted */
-  margin-right: 6px; /* Space between input field and button */
-  font-size: 1.2rem;   /* Font size */
-  border-radius: 20px; /* Border radius for rounded corners */
-  background-color: #252B39; /* Background color of the input field */
-  color: #A098C4;;      /* Text color */
-  line-height: 27px;   /* Increased line height to prevent text touching */
-  min-height: 10px;    /* Minimum height adjusted to fit initial content better */
-  max-height: 200px;   /* Maximum height before scrolling */
-  overflow: hidden;    /* Hides overflow */    
-  display: flex;       /* Uses flexbox to center content */
-  align-items: center; /* Vertically centers the text */
-  justify-content: flex-start; /* Aligns text to the start of the flex container */
-  white-space: pre-wrap; /* Maintains whitespace formatting */
-  resize: none;        /* Disables resize functionality */
-  width: 100%;         /* Makes sure the input field takes up 100% of its container */
-  border: 1.7px solid #DDDDDD; /* Initial border color */
-  outline: none; /* Removes the default focus outline */
+  padding: 21px 40px 21px;
+  margin-right: 6px;
+  font-size: 1.2rem;
+  border-radius: 20px;
+  background-color: #252B39;
+  color: #A098C4; /* Default text color set to white */
+  line-height: 27px;
+  min-height: 10px;
+  max-height: 200px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  white-space: pre-wrap;
+  resize: none;
+  width: 100%;
+  border: 1.7px solid #DDDDDD;
+  outline: none;
 }
 
-/* MESSAGE GEMINI PLACEHOLDER */
+
 .input-field:focus {
-  border-color: #FFFFFF; /* Changes the border color to brighter white on focus */
+  border-color: #FFFFFF;
   overflow-y: auto;
+  color: white;
 }
 
 .input-field::placeholder {
-  opacity: 1; /* Ensure placeholder is always visible until focus */
+  opacity: 1;
 }
 
 /* SEND BUTTON */
