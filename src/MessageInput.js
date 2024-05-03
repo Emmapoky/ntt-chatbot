@@ -1,9 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import SendIcon from '@mui/icons-material/Send';
 
 const MessageInput = ({ onSend }) => {
   const inputRef = useRef(null);
+  const placeholder = 'Message Gemini...';
+  const [isPlaceholder, setIsPlaceholder] = useState(true);
 
   const handleSend = (event) => {
     if (event) {
@@ -13,9 +15,10 @@ const MessageInput = ({ onSend }) => {
       event.preventDefault(); // Prevents the default form submission on Enter
     }
     const text = inputRef.current.textContent.trim();
-    if (text) {
+    if (text && !isPlaceholder) { // Only send text if it's not the placeholder
       onSend(text);
       inputRef.current.textContent = ''; // Clear the input field
+      setIsPlaceholder(true); // Reset the placeholder state
     }
     adjustHeight(); // Optionally adjust the height after sending
   };
@@ -31,21 +34,24 @@ const MessageInput = ({ onSend }) => {
   };
 
   const handleFocus = () => {
-    if (inputRef.current.textContent === 'Type your message here...') {
-      inputRef.current.textContent = '';
+    if (isPlaceholder) {
+      inputRef.current.textContent = ''; // Clear placeholder text
+      setIsPlaceholder(false); // Update state to indicate this is not placeholder text
     }
   };
 
   const handleBlur = () => {
-    if (inputRef.current.textContent === '') {
-      inputRef.current.textContent = 'Type your message here...';
+    if (inputRef.current.textContent.trim() === '') {
+      inputRef.current.textContent = placeholder; 
+      setIsPlaceholder(true); // Set state back to placeholder
     }
   };
 
   useEffect(() => {
     adjustHeight(true); // Adjust height initially and on window resize
-    if (inputRef.current.textContent === '') {
-      inputRef.current.textContent = 'Type your message here...'; // Set placeholder text initially
+    if (inputRef.current && inputRef.current.textContent.trim() === '') {
+      inputRef.current.textContent = placeholder; 
+      setIsPlaceholder(true);
     }
     window.addEventListener('resize', () => adjustHeight(true));
     return () => {
@@ -59,7 +65,7 @@ const MessageInput = ({ onSend }) => {
         ref={inputRef}
         className="input-field"
         contentEditable
-        placeholder="Type your message here..."
+        placeholder = {placeholder}
         onInput={adjustHeight} // Adjust height when input changes
         onFocus={handleFocus}
         onBlur={handleBlur}

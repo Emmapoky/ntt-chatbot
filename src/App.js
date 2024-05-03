@@ -7,6 +7,14 @@ import MessageInput from './MessageInput';
 import MessageList from './MessageList';
 import TypingIndicator from './TypingIndicator';
 
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import Drawer from '@mui/material/Drawer';
+
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import IconButton from '@mui/material/IconButton';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+
 import './App.css';
 
 const genAI = new GoogleGenerativeAI(process.env.REACT_APP_API_KEY);
@@ -16,6 +24,23 @@ function App() {
   const [isChatbotTyping, setIsChatbotTyping] = useState(false);
   const [messages, setMessages] = useState([]);
   const messagesEndRef = useRef(null);  // Reference to the end of the message list
+
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const [anchorEl, setAnchorEl] = useState(null);
+  const isMenuOpen = Boolean(anchorEl);
+  
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  }; 
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -62,18 +87,71 @@ function App() {
   
   return (
     <div className="app-container">
+      {/* Sidebar button */}
+      <IconButton className="sidebar-toggle-button" onClick={toggleSidebar} aria-label="open sidebar">
+          <KeyboardArrowRightIcon />
+      </IconButton>
+      {/* Sidebar Drawer */}
+      <Drawer
+        anchor="left"
+        open={sidebarOpen}
+        onClose={toggleSidebar}
+        className="drawer-paper"
+      >
+        <div className="drawer-content">
+          <div className="profile-icon-container">
+            <div className="profile-icon"></div>
+            <strong>ChatGPT</strong>
+          </div>
+          <p>History or other controls</p>
+        </div>
+      </Drawer>
+  
+      <div className="header">
+        <IconButton
+          aria-label="more"
+          aria-controls="long-menu"
+          aria-haspopup="true"
+          onClick={handleMenuOpen}
+        >
+          Gemini
+          <KeyboardArrowDownIcon />
+        </IconButton>
+        <Menu
+          id="long-menu"
+          anchorEl={anchorEl}
+          keepMounted
+          open={isMenuOpen}
+          onClose={handleMenuClose}
+          className="menu-paper"
+        >
+          <MenuItem onClick={handleMenuClose}>
+            Gemini
+          </MenuItem>
+          <MenuItem onClick={handleMenuClose}>
+            <span className="gemini-advanced-text">Gemini Advanced</span>
+            <button className="upgrade-button">Upgrade</button>
+          </MenuItem>
+        </Menu>
+      </div>
+  
+      <div className="disclaimer">
+        Chatbot may display inaccurate info, including about people, so double-check its responses. 
+        <span className="privacy-link">Your privacy & Chatbot Apps</span>
+      </div>
+  
       <MainContainer>
         <ChatContainer>
           <MessageList messages={messages} />
           {isChatbotTyping && <TypingIndicator />}
-          <div ref={messagesEndRef} />  {/* Empty div for auto-scrolling */}
+          <div ref={messagesEndRef} />
           <div className="custom-message-input-container">
             <MessageInput onSend={handleUserMessage} />
           </div>
         </ChatContainer>
       </MainContainer>
     </div>
-  );
+  );  
 }
 
 export default App;

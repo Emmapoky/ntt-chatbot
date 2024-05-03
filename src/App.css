@@ -2,69 +2,184 @@ html, body {
   height: 100%; /* Make sure html and body cover all the available space */
   margin: 0; /* Remove default margin */
   padding: 0; /* Remove default padding */
-  background-color: #131314; /* Set background color to match your design */
+  background-color: #1C202B; /* Set background color to match your design */
 }
 
-/* Full-screen app container */
+/* APP HEADER COMPONENTS */
+.header {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 70px;
+  padding-top: 0.1px;
+  background-color: #1C202B;
+}
+
+.gemini-advanced-text {
+  color: rgb(172, 172, 172); 
+}
+
+/* DISCLAIMER TEXT*/
+.disclaimer {
+  text-align: center;
+  width: 100%; 
+  position: fixed;
+  bottom: 0;
+  opacity: 0.4;
+  color: #ffffff; 
+  margin-bottom: 7px; /* Spacing above the disclaimer */
+  font-size: 14px; /* Font size for disclaimer text */
+  padding: 10px 0; /* Padding for spacing */
+}
+
+.privacy-link {
+  text-decoration: underline; /* Underlines the privacy link */
+  cursor: pointer; /* Changes cursor to pointer to indicate clickability */
+}
+
+/* Header customization */
+.header-menu {
+  background-color: #2f2f2f;
+  border-radius: 10px;
+}
+
+/* Specific menu item styling */
+.menu-item-white {
+  color: white;
+}
+
+/* Ensures the header button stays highlighted when the dropdown is open */
+.header .MuiIconButton-root.Mui-focusVisible,
+.header .MuiIconButton-root:hover {
+  background-color: #1C202B; /* Background color for hover and active states */
+  border-radius: 4px; /* Rounded border shape */
+}
+
+/* Styles for the dropdown menu */
+div.header .MuiPaper-root.MuiMenu-paper {
+  margin-top: 6px; /* Creates a separation between header and dropdown */
+}
+
+/* Style for the Gemini header button */
+.header .MuiIconButton-root {
+  color: white; /* Ensures text color is white */
+}
+
+/* Ensures the header button stays highlighted when the dropdown is open */
+.header .MuiIconButton-root.Mui-focusVisible {
+  background-color: #1C202B; /* Maintain background color when dropdown is active */
+}
+
+.upgrade-button {
+  background-color: #1b1b1b;
+  color: white;
+  padding: 8px 16px;
+  margin-left: 8px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* FULL-SCREEN APP CONTAINER */
 .app-container {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: #131314;
+  background-color: #1C202B;
   position: relative;
 }
 
-/* Chat container styles */
+/* SIDEBAR TOGGLE BUTTON */
+.sidebar-toggle-button {
+  position: fixed;
+  top: 50%; /* Center vertically */
+  left: 0;
+  transform: translateY(-50%); /* Adjust for exact center alignment */
+  z-index: 1000;
+  background-color: #272a2c;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+/* Custom styles for sidebar and main content */
+.profile-icon-container {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.profile-icon-margin {
+  margin-right: 10px;
+}
+
+.sidebar-toggle-button:hover {
+  background-color: #ffffff; /* Lighter shade on hover */
+}
+
+/* DRAWER STYLES */
+.drawer-paper {
+  width: 240px;
+  background-color: white; /* Set background color of sidebar to white */
+  color: rgb(255, 255, 255); /* Set text color to black for visibility */
+  height: calc(100% - 100px); /* Adjust height to make it vertically wider */
+  top: 50px; /* Adjust top position if necessary */
+}
+
+/* CHAT CONTAINER */
 .custom-chat-container {
   flex-grow: 1;
   overflow-y: auto; /* Makes the chat scrollable */
-  flex-grow: 1;
   position: relative; /* Changed from fixed to relative */
 }
-
 .message-input-container {
-  background-color: transparent; /* Transparent background for blending with any background */
-  display: flex; /* Uses flexbox for flexible layout */
-  align-items: center; /* Centers items vertically within the container */
-  position: fixed; /* Fixed position to keep it at the bottom */
-  bottom: 0; /* Positions at the bottom of the viewport */
-  left: 50%; /* Centers horizontally */
-  transform: translateX(-50%); /* Corrects the center alignment */
-  width: 60%; /* Adjust this value to increase or decrease the width of the input container */
+  display: flex;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
   padding-bottom: 50px;
 }
 
 .input-field {
   flex-grow: 1;
-  padding: 21px 40px 21px;  /* Symmetrical padding top and bottom adjusted */
-  font-size: 1.2rem;   /* Font size */
-  border-radius: 25px; /* Border radius for rounded corners */
-  background-color: #474747; /* Background color of the input field */
-  color: #FFFFFF;      /* Text color */
-  line-height: 27px;   /* Increased line height to prevent text touching */
-  min-height: 10px;    /* Minimum height adjusted to fit initial content better */
-  max-height: 200px;   /* Maximum height before scrolling */
-  overflow: hidden;    /* Hides overflow */
-  outline: none;       /* Removes the outline */
-  border: none;        /* No border */
-  display: flex;       /* Uses flexbox to center content */
-  align-items: center; /* Vertically centers the text */
-  justify-content: flex-start; /* Aligns text to the start of the flex container */
-  white-space: pre-wrap; /* Maintains whitespace formatting */
-  resize: none;        /* Disables resize functionality */
-  width: 100%;         /* Makes sure the input field takes up 100% of its container */
+  padding: 21px 40px 21px;
+  margin-right: 6px;
+  font-size: 1.2rem;
+  border-radius: 20px;
+  background-color: #252B39;
+  color: #A098C4; /* Default text color set to white */
+  line-height: 27px;
+  min-height: 10px;
+  max-height: 200px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  white-space: pre-wrap;
+  resize: none;
+  width: 100%;
+  border: 1.7px solid #DDDDDD;
+  outline: none;
 }
 
+
 .input-field:focus {
+  border-color: #FFFFFF;
   overflow-y: auto;
+  color: white;
 }
 
 .input-field::placeholder {
-  color: #aeaeae;
-  opacity: 1; /* Ensure placeholder is always visible until focus */
+  opacity: 1;
 }
 
-/* Add styles for the send button */
+/* SEND BUTTON */
 .send-button {
   display: inline-flex; /* Helps center the icon properly */
   align-items: center;
@@ -72,7 +187,7 @@ html, body {
 }
 
 .send-button .MuiSvgIcon-root { /* This selector targets the SVG icon within the button */
-  font-size: 3rem; /* Increase the icon size */
+  font-size: 2.8rem; /* Increase the icon size */
 }
 
 .send-button:hover {
@@ -83,43 +198,76 @@ html, body {
   color: #508be5; /* Change color on hover */
 }
 
-/* Styles for the message list to show messages */
+/* MESSAGE LIST TO SHOW MESSAGES */
 .custom-message-list {
   flex-grow: 1;
-  padding: 1rem 20rem;
+  padding: 3rem 24rem;
+  padding-right: 12rem;
   overflow-y: auto; /* scrollable message list */
-  padding-bottom: 130px; /* Additional bottom padding to create space above the input */
-  background-color: #131314; /* background color matches app container */
+  padding-bottom: 140px; /* Additional bottom padding to create space above the input box */
 }
 
-/* Individual message container */
+/* INDIVIDUAL MESSAGE CONTAINER COMPONENTS */
 .message {
   display: flex;
-  border-radius: 10px;
-  word-wrap: break-word; /* Ensures text wraps within the container */
-  margin-bottom: 3rem; /* Vertical space between messages */
-  max-width: 40%; /* Adjusted for narrower messages */
-  min-width: 80%; /* Adjust minimum width as needed */
+  align-items: flex-start;
   align-items: center;
+  margin-bottom: 3rem; /* vertical distance between gemini & user */
 }
 
-.message-user {
-  background-color: #1f1f1f;
-  margin-right: auto; /* Align to the right */
+.sender-title {
   color: white;
+  font-weight: bold;
 }
 
-.message-gemini {
-  background-color: #508be5;
-  margin-left: auto; /* Align to the left */
+/* Container for the header, icon and title */
+.message-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.2px; /* Space between header and message text */
+}
+
+.profile-icon {
+  width: 30px; 
+  height: 30px; 
+  border-radius: 50%; /* Circle shape */
+  margin-right: 16px; /* Space between icon and sender title */
+}
+
+/* USER MESSAGE STYLE */
+.message-user .profile-icon {
+  background-color: #707070;
+}
+
+/* GEMINI MESSAGE STYLE */
+.message-gemini .profile-icon {
+  background-color: #aeaeae; 
+}
+
+/* MESSAGE BACK & FORTH */
+.message-text {
+  display: block;
+  color: #fff;
+  padding: 1px 47px; /* Padding inside message bubble */
+  max-width: 80%; /* Maximum width of message bubble */
+  word-wrap: break-word; /* Wrap text in the bubble */
 }
 
 .message-user, .message-gemini {
-  padding-left: 30px; 
-  padding-right: 30px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-right: 80px;
 }
 
-/* Styles for the TypingIndicator */
+.message-user {
+  margin-left: auto; /* Align to the right */
+}
+
+.message-gemini {
+  margin-left: auto; /* Align to the left */
+}
+
+/* TYPING INDICATOR */
 .typing-indicator {
   color: white;
   padding: 0.5rem;
