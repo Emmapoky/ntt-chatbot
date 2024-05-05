@@ -97,7 +97,6 @@ div.header .MuiPaper-root.MuiMenu-paper {
   left: 0;
   transform: translateY(-50%); /* Adjust for exact center alignment */
   z-index: 1000;
-  background-color: #272a2c;
   border-radius: 50%;
   width: 48px;
   height: 48px;
@@ -119,16 +118,12 @@ div.header .MuiPaper-root.MuiMenu-paper {
 }
 
 .sidebar-toggle-button:hover {
-  background-color: #ffffff; /* Lighter shade on hover */
+  color: #ff0000; /* Lighter shade on hover */
 }
 
-/* DRAWER STYLES */
 .drawer-paper {
-  width: 240px;
-  background-color: white; /* Set background color of sidebar to white */
-  color: rgb(255, 255, 255); /* Set text color to black for visibility */
-  height: calc(100% - 100px); /* Adjust height to make it vertically wider */
-  top: 50px; /* Adjust top position if necessary */
+  background-color: #212121; /* Dark gray color */
+  width: 320px; /* Increased width */
 }
 
 /* CHAT CONTAINER */

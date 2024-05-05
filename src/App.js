@@ -1,3 +1,4 @@
+import './App.css';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import React, { useState, useRef, useEffect } from 'react';
 
@@ -14,8 +15,6 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-
-import './App.css';
 
 const genAI = new GoogleGenerativeAI(process.env.REACT_APP_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-pro" });
