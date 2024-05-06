@@ -1,5 +1,3 @@
-/* Make sure html and body cover all the available space */
-
 html, body {
   height: 100%; /* Make sure html and body cover all the available space */
   margin: 0; /* Remove default margin */
@@ -46,7 +44,7 @@ html, body {
 
 /* Specific menu item styling */
 .menu-item-white {
-  color: white;
+  color: rgb(119, 119, 119);
 }
 
 /* Ensures the header button stays highlighted when the dropdown is open */
@@ -58,7 +56,7 @@ html, body {
 
 /* Styles for the dropdown menu */
 div.header .MuiPaper-root.MuiMenu-paper {
-  margin-top: 6px; /* Creates a separation between header and dropdown */
+  margin-top: 10px; /* Creates a separation between header and dropdown */
 }
 
 /* Style for the Gemini header button */
@@ -118,12 +116,7 @@ div.header .MuiPaper-root.MuiMenu-paper {
 }
 
 .sidebar-toggle-button:hover {
-  color: #ff0000; /* Lighter shade on hover */
-}
-
-.drawer-paper {
-  background-color: #212121; /* Dark gray color */
-  width: 320px; /* Increased width */
+  color: #A098C4; 
 }
 
 /* CHAT CONTAINER */
@@ -191,10 +184,6 @@ div.header .MuiPaper-root.MuiMenu-paper {
   color: #ffffff; /* Change color on hover */
 }
 
-.send-button:press {
-  color: #508be5; /* Change color on hover */
-}
-
 /* MESSAGE LIST TO SHOW MESSAGES */
 .custom-message-list {
   flex-grow: 1;
@@ -233,12 +222,12 @@ div.header .MuiPaper-root.MuiMenu-paper {
 
 /* USER MESSAGE STYLE */
 .message-user .profile-icon {
-  background-color: #707070;
+  background-color: #A098C4;
 }
 
 /* GEMINI MESSAGE STYLE */
 .message-gemini .profile-icon {
-  background-color: #aeaeae; 
+  background-color: #282358; 
 }
 
 /* MESSAGE BACK & FORTH */
