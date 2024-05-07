@@ -1,6 +1,7 @@
-import './App.css';
+// changes on API
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import './App.css';
 
 import ChatContainer from './ChatContainer';
 import MainContainer from './MainContainer';
@@ -11,10 +12,10 @@ import TypingIndicator from './TypingIndicator';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Drawer from '@mui/material/Drawer';
 
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import IconButton from '@mui/material/IconButton';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const genAI = new GoogleGenerativeAI(process.env.REACT_APP_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-pro" });
@@ -50,29 +51,45 @@ function App() {
   }, [messages]);
 
   const handleUserMessage = async (userMessage) => {
-    // Add the user's message to the messages array
     setMessages(currentMessages => [
       ...currentMessages,
       { id: currentMessages.length, sender: 'user', message: userMessage }
     ]);
   
-    // Activate the typing indicator
     setIsChatbotTyping(true);
   
     try {
-      const prompt = userMessage;
-      const result = await model.generateContent(prompt);
-      const response = await result.response;
-      const text = await response.text(); 
+      // Context about NTT Data
+      const context = "NTT Data is a global IT innovator delivering technology-enabled services and solutions to clients around the world. The company provides consulting, application, business process, cloud, and infrastructure services.";
   
-      const newMessage = { id: messages.length + 1, sender: 'Gemini', message: text };
-      
-      // Update the messages array with the AI's response
+      // Check if the message is relevant to NTT Data
+      const relevantKeywords = ["NTT Data", "consulting", "technology", "IT solutions", "cloud services", "infrastructure"];
+      const isRelevant = relevantKeywords.some(keyword => userMessage.toLowerCase().includes(keyword.toLowerCase()));
+  
+      if (!isRelevant) {
+        setMessages(currentMessages => [
+          ...currentMessages,
+          { id: currentMessages.length + 1, sender: 'Gemini', message: "I can only provide information related to NTT Data. Please ask about our services, projects, or other related topics." }
+        ]);
+        setIsChatbotTyping(false);
+        return;
+      }
+  
+      // If relevant, continue with the query
+      const fullPrompt = `${context}\nQuestion: ${userMessage}`;
+      const result = await model.generateContent({
+        prompt: fullPrompt,
+        temperature: 0.5,
+        max_tokens: 250
+      });
+  
+      const response = await result.response;
+      const text = await response.text();
+  
       setMessages(currentMessages => [
         ...currentMessages,
-        newMessage
+        { id: messages.length + 1, sender: 'Gemini', message: text }
       ]);
-
     } catch (error) {
       console.error("Error processing user message with Gemini API:", error);
       setMessages(currentMessages => [
@@ -82,7 +99,7 @@ function App() {
     } finally {
       setIsChatbotTyping(false);
     }
-  };
+  };  
   
   return (
     <div className="app-container">
@@ -102,6 +119,7 @@ function App() {
             <div className="profile-icon"></div>
             <strong>ChatGPT</strong>
           </div>
+          {isChatbotTyping && <TypingIndicator />}  {/* Typing indicator placed right under the profile name */}
           <p>History or other controls</p>
         </div>
       </Drawer>
