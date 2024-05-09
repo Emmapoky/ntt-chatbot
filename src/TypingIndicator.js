@@ -1,8 +1,12 @@
-//shows a visual cue when the AI is "thinking"
+import './App.css';
 import React from 'react';
 
 const TypingIndicator = () => {
-  return <div className="typing-indicator">Gemini is thinking...</div>;
+  return (
+    <div className="loader-container">
+      <div className="loader"></div>
+    </div>
+  );
 };
 
 export default TypingIndicator;

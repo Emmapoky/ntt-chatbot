@@ -1,16 +1,15 @@
 html, body {
   height: 100%; /* Make sure html and body cover all the available space */
-  margin: 0; /* Remove default margin */
-  padding: 0; /* Remove default padding */
   background-color: #1C202B; /* Dark background color */
 }
 
 /* APP HEADER COMPONENTS */
 .header {
-  display: flex;
-  justify-content: flex-start;
-  padding-left: 70px;
-  padding-top: 0.1px;
+  position: absolute;
+  top: 15px;
+  left: 0;
+  right: 0;
+  padding-left: 15px;
 }
 
 .gemini-advanced-text {
@@ -28,6 +27,8 @@ html, body {
   margin-bottom: 7px; /* Spacing above the disclaimer */
   font-size: 14px; /* Font size for disclaimer text */
   padding: 10px 0; /* Padding for spacing */
+  background-color: #1C202B; 
+  z-index: 100;
 }
 
 .privacy-link {
@@ -81,6 +82,7 @@ div.header .MuiPaper-root.MuiMenu-paper {
 /* FULL-SCREEN APP CONTAINER */
 .app-container {
   display: flex;
+  padding-top: 15px;
   flex-direction: column;
   height: 100vh;
   position: relative;
@@ -100,7 +102,6 @@ div.header .MuiPaper-root.MuiMenu-paper {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
 }
 
 /* Custom styles for sidebar and main content */
@@ -135,6 +136,7 @@ div.header .MuiPaper-root.MuiMenu-paper {
   width: 60%;
   padding-bottom: 50px;
   background-color: #1C202B;
+  z-index: 10;
 }
 
 .input-field {
@@ -155,10 +157,11 @@ div.header .MuiPaper-root.MuiMenu-paper {
   white-space: pre-wrap;
   resize: none;
   width: 100%;
-  border: 1.7px solid #DDDDDD;
+  border: 1.7px solid #7b7b7b;
   outline: none;
+  word-wrap: break-word; 
+  overflow-y: auto; 
 }
-
 
 .input-field:focus {
   border-color: #FFFFFF;
@@ -255,9 +258,57 @@ div.header .MuiPaper-root.MuiMenu-paper {
 }
 
 /* TYPING INDICATOR */
-.typing-indicator {
-  color: white;
-  padding: 0.5rem;
-  font-style: italic;
-  text-align: center;
+.loader-container {
+  display: flex;
+  justify-content: center; /* Center the loader horizontally */
+  padding-top: 10px; /* Space between the profile name and the loader */
+}
+
+.loader {
+  width: 65px;
+  height: 65px;
+  position: relative;
+}
+
+.loader:before,
+.loader:after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px inset #fff;
+  animation: l4 2.5s infinite;
+}
+
+.loader:after {
+  animation-delay: -1.25s;
+}
+
+@keyframes l4 {
+  0% {
+    inset: 0 35px 35px 0;
+  }
+  12.5% {
+    inset: 0 35px 0 0;
+  }
+  25% {
+    inset: 35px 35px 0 0;
+  }
+  37.5% {
+    inset: 35px 0 0 0;
+  }
+  50% {
+    inset: 35px 0 0 35px;
+  }
+  62.5% {
+    inset: 0 0 0 35px;
+  }
+  75% {
+    inset: 0 0 35px 35px;
+  }
+  87.5% {
+    inset: 0 0 35px 0;
+  }
+  100% {
+    inset: 0 35px 35px 0;
+  }
 }

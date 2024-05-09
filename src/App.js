@@ -63,7 +63,7 @@ function App() {
       const context = "NTT Data is a global IT innovator delivering technology-enabled services and solutions to clients around the world. The company provides consulting, application, business process, cloud, and infrastructure services.";
   
       // Check if the message is relevant to NTT Data
-      const relevantKeywords = ["NTT Data", "consulting", "technology", "IT solutions", "cloud services", "infrastructure"];
+      const relevantKeywords = ["NTT", "NTT Data", "consulting", "technology", "IT solutions", "cloud services", "infrastructure"];
       const isRelevant = relevantKeywords.some(keyword => userMessage.toLowerCase().includes(keyword.toLowerCase()));
   
       if (!isRelevant) {
@@ -117,7 +117,6 @@ function App() {
         <div className="drawer-content">
           <div className="profile-icon-container">
             <div className="profile-icon"></div>
-            <strong>ChatGPT</strong>
           </div>
           {isChatbotTyping && <TypingIndicator />}  {/* Typing indicator placed right under the profile name */}
           <p>History or other controls</p>
