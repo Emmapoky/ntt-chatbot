@@ -66,12 +66,14 @@ const MessageInput = ({ onSend }) => {
         ref={inputRef}
         className="input-field"
         contentEditable
-        placeholder = {placeholder}
+        placeholder={placeholder}
         onInput={adjustHeight} // Adjust height when input changes
         onFocus={handleFocus}
         onBlur={handleBlur}
         onKeyPress={handleSend} // Handle Enter key
-      />
+      >
+        {/* This inner div should act as the input area */}
+      </div>
       <IconButton className="send-button" onClick={handleSend} aria-label="send">
         <SendIcon />
       </IconButton>
