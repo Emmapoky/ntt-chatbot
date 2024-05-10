@@ -52,6 +52,8 @@ function App() {
     scrollToBottom();  // Scroll to bottom whenever messages update
   }, [messages]);
 
+  const commonGreetings = ['hi', 'hello', 'hey', 'greetings', 'good morning', 'good afternoon', 'good evening'];
+
   const handleUserMessage = async (userMessage) => {
     setMessages(currentMessages => [
         ...currentMessages,
@@ -60,11 +62,17 @@ function App() {
 
     setIsChatbotTyping(true);
 
-    // Use compromise to check for greetings
-    const doc = nlp(userMessage);
-    const isGreeting = doc.has('#Greeting');
+    // Normalize the input for better comparison
+    const normalizedMessage = userMessage.toLowerCase().trim();
 
-    if (isGreeting) {
+    // Check for common greetings first
+    const isCommonGreeting = commonGreetings.some(greeting => normalizedMessage.includes(greeting));
+    
+    // Use compromise to check for any additional greetings
+    const doc = nlp(normalizedMessage);
+    const isNlpGreeting = doc.has('#Greeting');
+
+    if (isCommonGreeting || isNlpGreeting) {
         setMessages(currentMessages => [
             ...currentMessages,
             { id: currentMessages.length + 1, sender: 'Gemini', message: "Hello! I am an AI responder trained to provide information about NTT Data services and more. How can I assist you today?" }
