@@ -3,6 +3,8 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
 
+import nlp from 'compromise';
+
 import ChatContainer from './ChatContainer';
 import MainContainer from './MainContainer';
 import MessageInput from './MessageInput';
@@ -52,54 +54,67 @@ function App() {
 
   const handleUserMessage = async (userMessage) => {
     setMessages(currentMessages => [
-      ...currentMessages,
-      { id: currentMessages.length, sender: 'user', message: userMessage }
+        ...currentMessages,
+        { id: currentMessages.length, sender: 'user', message: userMessage }
     ]);
-  
+
     setIsChatbotTyping(true);
-  
-    try {
-      // Context about NTT Data
-      const context = "NTT Data is a global IT innovator delivering technology-enabled services and solutions to clients around the world. The company provides consulting, application, business process, cloud, and infrastructure services.";
-  
-      // Check if the message is relevant to NTT Data
-      const relevantKeywords = ["NTT", "NTT Data", "consulting", "technology", "IT solutions", "cloud services", "infrastructure"];
-      const isRelevant = relevantKeywords.some(keyword => userMessage.toLowerCase().includes(keyword.toLowerCase()));
-  
-      if (!isRelevant) {
+
+    // Use compromise to check for greetings
+    const doc = nlp(userMessage);
+    const isGreeting = doc.has('#Greeting');
+
+    if (isGreeting) {
         setMessages(currentMessages => [
-          ...currentMessages,
-          { id: currentMessages.length + 1, sender: 'Gemini', message: "I can only provide information related to NTT Data. Please ask about our services, projects, or other related topics." }
+            ...currentMessages,
+            { id: currentMessages.length + 1, sender: 'Gemini', message: "Hello! I am an AI responder trained to provide information about NTT Data services and more. How can I assist you today?" }
         ]);
         setIsChatbotTyping(false);
         return;
-      }
-  
-      // If relevant, continue with the query
-      const fullPrompt = `${context}\nQuestion: ${userMessage}`;
-      const result = await model.generateContent({
-        prompt: fullPrompt,
-        temperature: 0.5,
-        max_tokens: 250
-      });
-  
-      const response = await result.response;
-      const text = await response.text();
-  
-      setMessages(currentMessages => [
-        ...currentMessages,
-        { id: messages.length + 1, sender: 'Gemini', message: text }
-      ]);
-    } catch (error) {
-      console.error("Error processing user message with Gemini API:", error);
-      setMessages(currentMessages => [
-        ...currentMessages,
-        { id: currentMessages.length, sender: 'Gemini', message: "An error occurred, please try again." }
-      ]);
-    } finally {
-      setIsChatbotTyping(false);
     }
-  };  
+    
+    // Context about NTT Data
+    const context = "NTT Data is a global IT innovator delivering technology-enabled services and solutions to clients around the world. The company provides consulting, application, business process, cloud, and infrastructure services.";
+
+    // Check if the message is relevant to NTT Data
+    const relevantKeywords = ["NTT", "NTT Data", "consulting", "technology", "IT solutions", "cloud services", "infrastructure"];
+    const isRelevant = relevantKeywords.some(keyword => userMessage.toLowerCase().includes(keyword.toLowerCase()));
+
+    if (!isRelevant) {
+        setMessages(currentMessages => [
+            ...currentMessages,
+            { id: currentMessages.length + 1, sender: 'Gemini', message: "I can only provide information related to NTT Data. Please ask about our services, projects, or other related topics." }
+        ]);
+        setIsChatbotTyping(false);
+        return;
+    }
+
+    try {
+        // If relevant, continue with the query
+        const fullPrompt = `${context}\nQuestion: ${userMessage}`;
+        const result = await model.generateContent({
+            prompt: fullPrompt,
+            temperature: 0.5,
+            max_tokens: 250
+        });
+
+        const response = await result.response;
+        const text = await response.text();
+
+        setMessages(currentMessages => [
+            ...currentMessages,
+            { id: messages.length + 1, sender: 'Gemini', message: text }
+        ]);
+    } catch (error) {
+        console.error("Error processing user message with Gemini API:", error);
+        setMessages(currentMessages => [
+            ...currentMessages,
+            { id: currentMessages.length, sender: 'Gemini', message: "Unfortunately, an error occurred while processing your request. Please try again later." }
+        ]);
+    } finally {
+        setIsChatbotTyping(false);
+    }
+};
   
   return (
     <div className="app-container">
