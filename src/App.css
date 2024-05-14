@@ -5,11 +5,14 @@ html, body {
 
 /* APP HEADER COMPONENTS */
 .header {
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
+  display: flex;
+  justify-content: flex-start;
   padding-left: 22px;
   padding-top: 20px;
+  z-index: 1000; 
 }
 
 .gemini-advanced-text {
@@ -24,10 +27,9 @@ html, body {
   bottom: 0;
   opacity: 0.4;
   color: #ffffff; 
-  margin-bottom: 7px; /* Spacing above the disclaimer */
+  margin-bottom: 5px; /* Spacing above the disclaimer */
   font-size: 14px; /* Font size for disclaimer text */
-  padding: 10px 0; /* Padding for spacing */
-  background-color: #1C202B; 
+  padding: 5px 0; /* Padding for spacing */
   z-index: 100;
 }
 
@@ -94,13 +96,14 @@ div.header .MuiPaper-root.MuiMenu-paper {
   top: 50%; /* Center vertically */
   left: 0;
   transform: translateY(-50%); /* Adjust for exact center alignment */
-  z-index: 1000;
+  z-index: 1000; /* Ensure it stays on top of other elements */
   border-radius: 50%;
   width: 48px;
   height: 48px;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #6F6792; /* Set the desired background color */
 }
 
 /* Custom styles for sidebar and main content */
@@ -135,7 +138,7 @@ div.header .MuiPaper-root.MuiMenu-paper {
   justify-content: space-between;
   transform: translateX(-50%);
   width: 60%;
-  padding-bottom: 50px;
+  padding-bottom: 40px;
   background-color: #1C202B;
   z-index: 10;
 }
@@ -269,50 +272,16 @@ div.header .MuiPaper-root.MuiMenu-paper {
 }
 
 .loader {
-  width: 65px;
-  height: 65px;
-  position: relative;
-}
-
-.loader:before,
-.loader:after {
-  content: "";
-  position: absolute;
+  margin: auto;
+  border: 20px solid #EAF0F6;
   border-radius: 50%;
-  box-shadow: 0 0 0 3px inset #fff;
-  animation: l4 2.5s infinite;
+  border-top: 20px solid #FF7A59;
+  width: 20px;
+  height: 20px;
+  animation: spinner 4s linear infinite;
 }
 
-.loader:after {
-  animation-delay: -1.25s;
-}
-
-@keyframes l4 {
-  0% {
-    inset: 0 35px 35px 0;
-  }
-  12.5% {
-    inset: 0 35px 0 0;
-  }
-  25% {
-    inset: 35px 35px 0 0;
-  }
-  37.5% {
-    inset: 35px 0 0 0;
-  }
-  50% {
-    inset: 35px 0 0 35px;
-  }
-  62.5% {
-    inset: 0 0 0 35px;
-  }
-  75% {
-    inset: 0 0 35px 35px;
-  }
-  87.5% {
-    inset: 0 0 35px 0;
-  }
-  100% {
-    inset: 0 35px 35px 0;
-  }
+@keyframes spinner {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
