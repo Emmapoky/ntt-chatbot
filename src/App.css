@@ -1,4 +1,6 @@
 html, body {
+  margin: 0;
+  padding: 0;
   height: 100%; /* Make sure html and body cover all the available space */
   background-color: #1C202B; /* Dark background color */
 }
@@ -96,7 +98,7 @@ div.header .MuiPaper-root.MuiMenu-paper {
   top: 50%; /* Center vertically */
   left: 0;
   transform: translateY(-50%); /* Adjust for exact center alignment */
-  z-index: 1000; /* Ensure it stays on top of other elements */
+  z-index: 1500; /* Ensure it stays on top of other elements */
   border-radius: 50%;
   width: 48px;
   height: 48px;
@@ -106,10 +108,19 @@ div.header .MuiPaper-root.MuiMenu-paper {
   background-color: #6F6792; /* Set the desired background color */
 }
 
+.sidebar-toggle-button svg.MuiSvgIcon-root {
+  position: fixed;
+  z-index: 1100;
+  top: 50%; /* Adjust based on where you want it */
+  left: 4;
+  transform: translateY(-50%);
+}
+
 /* Custom styles for sidebar and main content */
 .profile-icon-container {
   padding: 20px;
   display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
@@ -229,6 +240,9 @@ div.header .MuiPaper-root.MuiMenu-paper {
   height: 30px; 
   border-radius: 50%; /* Circle shape */
   margin-right: 16px; /* Space between icon and sender title */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* USER MESSAGE STYLE */
@@ -265,23 +279,37 @@ div.header .MuiPaper-root.MuiMenu-paper {
 }
 
 /* TYPING INDICATOR */
+.typing-indicator-container {
+  margin-top: 2px; /* Space between message header and loader */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align to the left */
+  margin-left: 50px; /* Add spacing to the left */
+}
+
 .loader-container {
   display: flex;
   justify-content: center; /* Center the loader horizontally */
-  padding-top: 10px; /* Space between the profile name and the loader */
+  margin-top: 2px;
 }
 
 .loader {
   margin: auto;
-  border: 20px solid #EAF0F6;
+  border: 5px solid #EAF0F6;
   border-radius: 50%;
-  border-top: 20px solid #FF7A59;
-  width: 20px;
-  height: 20px;
+  border-top: 5px solid #6F6792;
+  width: 5px;
+  height: 5px;
   animation: spinner 4s linear infinite;
 }
 
 @keyframes spinner {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.profile-name {
+  margin-top: 10px;
+  color: #EAF0F6;
+  font-size: 1rem;
 }

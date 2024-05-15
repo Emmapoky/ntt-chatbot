@@ -101,8 +101,17 @@ function App() {
         <div className="drawer-content">
           <div className="profile-icon-container">
             <div className="profile-icon"></div>
+            <div className="profile-name">Chatbot</div>
+            {isChatbotTyping && (
+              <div className="typing-indicator-container">
+                <div className="message-header">
+                  <div className="profile-icon message-gemini"></div>
+                  <div className="profile-name">Chatbot</div>
+                </div>
+                <TypingIndicator />
+              </div>
+            )}
           </div>
-          {isChatbotTyping && <TypingIndicator />}  {/* Typing indicator placed right under the profile name */}
           <p>History or other controls</p>
         </div>
       </Drawer>
@@ -143,7 +152,15 @@ function App() {
       <MainContainer>
         <ChatContainer>
           <MessageList messages={messages} />
-          {isChatbotTyping && <TypingIndicator />}
+          {isChatbotTyping && (
+            <div className="message">
+              <div className="message-header">
+                <div className="profile-icon message-gemini"></div>
+                <div className="sender-title">Chatbot</div>
+              </div>
+              <TypingIndicator />
+            </div>
+          )}
           <div ref={messagesEndRef} />
           <div className="custom-message-input-container">
             <MessageInput onSend={handleUserMessage} />
