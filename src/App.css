@@ -280,17 +280,36 @@ div.header .MuiPaper-root.MuiMenu-paper {
 
 /* TYPING INDICATOR */
 .typing-indicator-container {
-  margin-top: 2px; /* Space between message header and loader */
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Align to the left */
-  margin-left: 50px; /* Add spacing to the left */
+  align-items: flex-start; /* Aligns the content to the left */
+  margin-left: 50px; /* Add left margin for proper spacing */
+  padding-right: 80px; /* Same padding as message */
 }
 
-.loader-container {
+.loader-message-header {
   display: flex;
-  justify-content: center; /* Center the loader horizontally */
-  margin-top: 2px;
+  align-items: center;
+  margin-bottom: 0.2px; /* Space between header and loader */
+}
+
+.loader-message-text {
+  display: block;
+  color: #fff;
+  padding: 1px 47px; /* Padding inside loader bubble */
+  max-width: 80%; /* Maximum width of loader bubble */
+  word-wrap: break-word; /* Wrap text in the bubble */
+}
+
+.loader-profile-icon {
+  width: 30px; 
+  height: 30px; 
+  border-radius: 50%; /* Circle shape */
+  margin-right: 16px; /* Space between icon and loader text */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #282358; /* Same as .message-gemini */
 }
 
 .loader {
@@ -309,6 +328,7 @@ div.header .MuiPaper-root.MuiMenu-paper {
 }
 
 .profile-name {
+  font-weight: bold;
   margin-top: 10px;
   color: #EAF0F6;
   font-size: 1rem;
