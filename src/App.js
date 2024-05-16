@@ -153,9 +153,8 @@ function App() {
         <ChatContainer>
           <MessageList messages={messages} />
           {isChatbotTyping && (
-            <div className="message">
-              <div className="message-header">
-                <div className="profile-icon message-gemini"></div>
+            <div className="typing-indicator-container">
+              <div className="loader-message-header">
               </div>
               <TypingIndicator />
             </div>

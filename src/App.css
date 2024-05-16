@@ -212,7 +212,9 @@ div.header .MuiPaper-root.MuiMenu-paper {
   padding: 3rem 24rem;
   padding-right: 12rem;
   overflow-y: auto; /* scrollable message list */
-  padding-bottom: 140px; /* Additional bottom padding to create space above the input box */
+  scroll-padding-bottom: 140px; /* Additional bottom padding to create space above the input box */
+  padding-bottom: 120px;
+  position: relative;
 }
 
 /* INDIVIDUAL MESSAGE CONTAINER COMPONENTS */
@@ -283,20 +285,20 @@ div.header .MuiPaper-root.MuiMenu-paper {
   display: flex;
   flex-direction: column;
   align-items: flex-start; /* Aligns the content to the left */
-  margin-left: 50px; /* Add left margin for proper spacing */
-  padding-right: 80px; /* Same padding as message */
+  margin-top: 0px;
+  margin-left: 12rem; /* Add left margin for proper spacing */
 }
 
 .loader-message-header {
   display: flex;
   align-items: center;
-  margin-bottom: 0.2px; /* Space between header and loader */
+  margin-bottom: 30px; /* Space between header and loader */
 }
 
 .loader-message-text {
   display: block;
   color: #fff;
-  padding: 1px 47px; /* Padding inside loader bubble */
+  padding: 1px 1px; /* Padding inside loader bubble */
   max-width: 80%; /* Maximum width of loader bubble */
   word-wrap: break-word; /* Wrap text in the bubble */
 }
@@ -313,7 +315,7 @@ div.header .MuiPaper-root.MuiMenu-paper {
 }
 
 .loader {
-  margin: auto;
+  margin-left: 45px;
   border: 5px solid #EAF0F6;
   border-radius: 50%;
   border-top: 5px solid #6F6792;
