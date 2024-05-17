@@ -335,3 +335,94 @@ div.header .MuiPaper-root.MuiMenu-paper {
   color: #EAF0F6;
   font-size: 1rem;
 }
+
+/* Styles for the chat popup window */
+.popup-chat-button {
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  cursor: pointer;
+  z-index: 1000;
+  font-size: 48px; /* Adjust size as needed */
+  color: #555; /* Adjust color as needed */
+  background-color: transparent; /* Remove background color if not needed */
+  border: none;
+  padding: 16px;
+}
+
+.form-popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: #252b39;
+}
+
+.form-container .btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  right: 0;
+  top: 0;
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+.form-container .cancel {
+  background-color: #9087DD;
+}
+
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+/* Additional styles for textarea */
+.form-container textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+  resize: none;
+  min-height: 200px;
+}
+
+.form-container textarea:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Adjustments for the message list inside the popup */
+.custom-message-list {
+  padding: 1rem; /* Adjust padding for the smaller popup window */
+}
+
+/* Adjustments for typing indicator inside the popup */
+.typing-indicator-container {
+  margin-top: 5px;
+  margin-left: 0; /* Reset margin for popup */
+}
+
+.loader-message-header {
+  margin-bottom: 2px;
+}
+
+.loader {
+  width: 20px;
+  height: 20px;
+}
+
+/* Keep existing styles for header, profile-icon, etc. */
+.message-header, .profile-icon, .message-gemini .profile-icon, .message-user .profile-icon {
+  /* existing styles */
+}

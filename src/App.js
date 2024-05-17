@@ -3,6 +3,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
 
+import PopupChat from './PopupChat';
 import ChatContainer from './ChatContainer';
 import MainContainer from './MainContainer';
 import MessageInput from './MessageInput';
@@ -87,6 +88,11 @@ function App() {
   
   return (
     <div className="app-container">
+      <PopupChat 
+        handleUserMessage={handleUserMessage} 
+        messages={messages} 
+        isChatbotTyping={isChatbotTyping}
+      />
       {/* Sidebar button */}
       <IconButton className="sidebar-toggle-button" onClick={toggleSidebar} aria-label="open sidebar">
           <KeyboardArrowRightIcon />
