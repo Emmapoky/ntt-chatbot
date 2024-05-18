@@ -351,7 +351,7 @@ div.header .MuiPaper-root.MuiMenu-paper {
 }
 
 /* Chat popup */
-.chat-popup {
+.popup-chat-popup {
   display: block;
   position: fixed;
   bottom: 70px; /* Adjust to be above the popup button */
@@ -365,7 +365,7 @@ div.header .MuiPaper-root.MuiMenu-paper {
 }
 
 /* Form container */
-.form-container {
+.popup-form-container {
   max-width: 100%;
   padding: 10px;
   background-color: #252b39;
@@ -373,7 +373,7 @@ div.header .MuiPaper-root.MuiMenu-paper {
 }
 
 /* Chat header */
-.chat-header {
+.popup-chat-header {
   display: flex;
   align-items: center;
   padding: 10px;
@@ -381,7 +381,7 @@ div.header .MuiPaper-root.MuiMenu-paper {
   border-radius: 10px 10px 0 0;
 }
 
-.profile-icon {
+.popup-profile-icon {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -389,45 +389,45 @@ div.header .MuiPaper-root.MuiMenu-paper {
   margin-right: 10px;
 }
 
-.profile-info {
+.popup-profile-info {
   flex-grow: 1;
 }
 
-.profile-name {
+.popup-profile-name {
   color: #ffffff;
   font-weight: bold;
 }
 
-.profile-status {
+.popup-profile-status {
   color: #b0b0b0;
   font-size: 12px;
 }
 
-.chat-settings {
+.popup-chat-settings {
   color: #ffffff;
 }
 
 /* Message list */
-.message-list {
+.popup-message-list {
   max-height: 300px; /* Adjust height as needed */
   overflow-y: auto;
   padding: 10px;
 }
 
 /* Message styles */
-.message {
+.popup-message {
   display: flex;
   align-items: flex-start;
   margin-bottom: 10px;
 }
 
-.message-header {
+.popup-message-header {
   display: flex;
   align-items: center;
   margin-bottom: 0.2px;
 }
 
-.message-text {
+.popup-message-text {
   display: block;
   color: #ffffff;
   padding: 5px 10px;
@@ -438,28 +438,28 @@ div.header .MuiPaper-root.MuiMenu-paper {
 }
 
 /* User and Gemini message styles */
-.message-user .profile-icon {
+.popup-message-user .popup-profile-icon {
   background-color: #A098C4;
 }
 
-.message-gemini .profile-icon {
+.popup-message-gemini .popup-profile-icon {
   background-color: #282358;
 }
 
 /* Typing indicator styles */
-.typing-indicator-container {
+.popup-typing-indicator-container {
   display: flex;
   align-items: center;
   margin-top: 10px;
 }
 
-.loader-message-header {
+.popup-loader-message-header {
   display: flex;
   align-items: center;
   margin-bottom: 2px;
 }
 
-.loader-profile-icon {
+.popup-loader-profile-icon {
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -467,12 +467,12 @@ div.header .MuiPaper-root.MuiMenu-paper {
   margin-right: 10px;
 }
 
-.loader-message-text {
+.popup-loader-message-text {
   color: #ffffff;
 }
 
 /* Input container */
-.input-container {
+.popup-input-container {
   display: flex;
   align-items: center;
   padding: 10px;
@@ -480,7 +480,7 @@ div.header .MuiPaper-root.MuiMenu-paper {
   border-radius: 0 0 10px 10px;
 }
 
-.input-field {
+.popup-input-field {
   flex-grow: 1;
   padding: 10px;
   border-radius: 20px;
@@ -490,43 +490,32 @@ div.header .MuiPaper-root.MuiMenu-paper {
   margin-right: 10px;
 }
 
-.send-button {
-  background-color: #04AA6D;
+.popup-send-button {
+  background-color: #B3ACFC;
   color: white;
   border: none;
   padding: 10px;
   border-radius: 50%;
   cursor: pointer;
-}
-
-.cancel {
-  background-color: #9087DD;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 50%;
-  cursor: pointer;
-  margin-top: 10px;
-  width: 100%;
 }
 
 /* Adjustments for the message list inside the popup */
-.custom-message-list {
+.popup-custom-message-list {
   padding: 1rem;
 }
 
 /* Adjustments for typing indicator inside the popup */
-.typing-indicator-container {
+.popup-typing-indicator-container {
   margin-top: 5px;
   margin-left: 0;
 }
 
-.loader {
+.popup-loader {
   width: 20px;
   height: 20px;
 }
 
 /* Existing styles for header, profile-icon, etc. */
-.message-header, .profile-icon, .message-gemini .profile-icon, .message-user .profile-icon {
+.popup-message-header, .popup-profile-icon, .popup-message-gemini .popup-profile-icon, .popup-message-user .popup-profile-icon {
   /* existing styles */
 }

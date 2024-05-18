@@ -7,6 +7,7 @@ import TypingIndicator from './TypingIndicator'; // Ensure you have the correct 
 
 const PopupChat = ({ handleUserMessage, messages, isChatbotTyping }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [inputValue, setInputValue] = useState('');
   const messagesEndRef = useRef(null);
 
   const toggleChat = () => {
@@ -21,51 +22,66 @@ const PopupChat = ({ handleUserMessage, messages, isChatbotTyping }) => {
     scrollToBottom();
   }, [messages]);
 
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleSendMessage = (e) => {
+    e.preventDefault();
+    if (inputValue.trim()) {
+      handleUserMessage(inputValue);
+      setInputValue('');
+    }
+  };
+
   return (
     <div>
       <ChatIcon className="popup-chat-button" onClick={toggleChat} /> {/* Use ChatIcon here */}
       {isOpen && (
-        <div className="chat-popup">
-          <div className="form-container">
-            <div className="chat-header">
-              <div className="profile-icon"></div>
-              <div className="profile-info">
-                <div className="profile-name">Your name</div>
-                <div className="profile-status">Status</div>
+        <div className="popup-chat-popup">
+          <div className="popup-form-container">
+            <div className="popup-chat-header">
+              <div className="popup-profile-icon"></div>
+              <div className="popup-profile-info">
+                <div className="popup-profile-name">Your name</div>
+                <div className="popup-profile-status">Status</div>
               </div>
-              <div className="chat-settings">
+              <div className="popup-chat-settings">
                 <KeyboardArrowDownIcon />
               </div>
             </div>
-            <div className="message-list">
+            <div className="popup-message-list">
               {messages.map((msg, index) => (
-                <div key={index} className={`message ${msg.sender}`}>
-                  <div className="message-header">
-                    <div className={`profile-icon ${msg.sender}`}></div>
-                    <div className="message-text">{msg.message}</div>
+                <div key={index} className={`popup-message ${msg.sender}`}>
+                  <div className="popup-message-header">
+                    <div className={`popup-profile-icon ${msg.sender}`}></div>
+                    <div className="popup-message-text">{msg.message}</div>
                   </div>
                 </div>
               ))}
               {isChatbotTyping && (
-                <div className="typing-indicator-container">
-                  <div className="loader-message-header">
-                    <div className="profile-icon loader-profile-icon"></div>
-                    <div className="loader-message-text">Chatbot is typing...</div>
+                <div className="popup-typing-indicator-container">
+                  <div className="popup-loader-message-header">
+                    <div className="popup-profile-icon popup-loader-profile-icon"></div>
+                    <div className="popup-loader-message-text">Chatbot is typing...</div>
                   </div>
                   <TypingIndicator />
                 </div>
               )}
               <div ref={messagesEndRef} />
             </div>
-            <div className="input-container">
-              <input type="text" className="input-field" placeholder="input text" />
-              <button type="submit" className="send-button" onClick={handleUserMessage}>
+            <form className="popup-input-container" onSubmit={handleSendMessage}>
+              <input
+                type="text"
+                className="popup-input-field"
+                placeholder="input text"
+                value={inputValue}
+                onChange={handleInputChange}
+              />
+              <button type="submit" className="popup-send-button">
                 <SendIcon />
               </button>
-            </div>
-            <button type="button" className="btn cancel" onClick={toggleChat}>
-              Close
-            </button>
+            </form>
           </div>
         </div>
       )}
