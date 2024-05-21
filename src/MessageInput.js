@@ -1,7 +1,8 @@
+import './App.css';
+import SendIcon from '@mui/icons-material/ArrowCircleRightRounded';
 import SendIcon from '@mui/icons-material/Send';
 import IconButton from '@mui/material/IconButton';
 import React, { useEffect, useRef, useState } from 'react';
-import './App.css';
 
 const MessageInput = ({ onSend }) => {
   const inputRef = useRef(null);
