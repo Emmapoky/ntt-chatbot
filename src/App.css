@@ -193,17 +193,35 @@ div.header .MuiPaper-root.MuiMenu-paper {
 
 /* SEND BUTTON */
 .send-button {
-  position: absolute;
-  right: 70px;
+  position: fixed;
+  right: 75px;
+  background: none; /* Remove any background color */
+  border: none; /* Remove any border */
+  padding: 0; /* Remove any padding */
+  box-shadow: none; /* Remove any box shadow */
+  transition: none; /* Remove any transition animations */
+  outline: none; /* Remove focus outline */
 }
-
 
 .send-button .MuiSvgIcon-root { /* This selector targets the SVG icon within the button */
-  font-size: 2.8rem; /* Increase the icon size */
+  font-size: 3.4rem; /* Increase the icon size */
+  transform: rotate(-90deg);
+  transition: none; /* Remove any transition animations */
 }
 
-.send-button:hover {
-  color: #ffffff; /* Change color on hover */
+.send-button:hover .MuiSvgIcon-root {
+  color: #B3ACFC; /* Change color on hover */
+  transition: none; /* Remove any transition animations */
+}
+
+.send-button:active, .send-button:focus {
+  outline: none; /* Remove focus and active outline */
+  box-shadow: none; /* Remove box shadow on active */
+}
+
+.send-button:active .MuiSvgIcon-root, .send-button:focus .MuiSvgIcon-root {
+  color: #B3ACFC; /* Keep the same color on active press and focus */
+  transition: none; /* Remove any transition animations */
 }
 
 /* MESSAGE LIST TO SHOW MESSAGES */
