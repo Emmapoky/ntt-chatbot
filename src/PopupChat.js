@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import './App.css';
 import ChatIcon from '@mui/icons-material/Chat'; // Import the ChatIcon
-import SendIcon from '@mui/icons-material/Send';
+import SendIcon from '@mui/icons-material/ArrowCircleRightRounded';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import TypingIndicator from './TypingIndicator'; // Ensure you have the correct import for TypingIndicator
+import './PopupChat.css';
 
 const PopupChat = ({ handleUserMessage, messages, isChatbotTyping }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,7 +36,11 @@ const PopupChat = ({ handleUserMessage, messages, isChatbotTyping }) => {
 
   return (
     <div>
-      <ChatIcon className="popup-chat-button" onClick={toggleChat} /> {/* Use ChatIcon here */}
+      <div className="popup-chat-button-wrapper">
+        <div className="popup-chat-button-background">
+          <ChatIcon className="popup-chat-button" onClick={toggleChat} />
+        </div>
+      </div>
       {isOpen && (
         <div className="popup-chat-popup">
           <div className="popup-form-container">

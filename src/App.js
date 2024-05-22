@@ -151,8 +151,8 @@ function App() {
       </div>
   
       <div className="disclaimer">
-        Chatbot may display inaccurate info, including about people, so double-check its responses. 
-        <span className="privacy-link">Your privacy & Chatbot Apps</span>
+        Chatbot may display inaccurate info. 
+        <span className="privacy-link"> Your privacy & Chatbot Apps</span>
       </div>
   
       <MainContainer>
