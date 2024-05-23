@@ -7,10 +7,23 @@ const visitedUrls = new Set();
 const baseUrl = 'https://www.nttdata.com/global/en/';
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
+// Function to check if the URL points to a non-HTML content
+function isHtmlContentType(contentType) {
+    return contentType && contentType.includes('text/html');
+}
+
 async function extractTextFromUrl(url) {
     try {
         visitedUrls.add(url);
         const response = await axios.get(url);
+        
+        // Check the content type of the response
+        const contentType = response.headers['content-type'];
+        if (!isHtmlContentType(contentType)) {
+            console.log(`Skipping non-HTML content: ${url}`);
+            return ''; // Skip non-HTML content
+        }
+
         const $ = cheerio.load(response.data);
 
         let pageText = '';
