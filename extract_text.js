@@ -33,7 +33,13 @@ async function extractTextFromUrl(url) {
 }
 
 (async () => {
-    const allText = await extractTextFromUrl(baseUrl);
-    fs.writeFileSync('nttdata_text.txt', allText, 'utf-8');
-    console.log('Text extraction complete. Data saved to nttdata_text.txt');
+    try {
+        console.log('Starting text extraction...');
+        const allText = await extractTextFromUrl(baseUrl);
+        console.log('Writing text to file...');
+        fs.writeFileSync('nttdata_text.txt', allText, 'utf-8');
+        console.log('Text extraction complete. Data saved to nttdata_text.txt');
+    } catch (error) {
+        console.error('Error extracting text:', error);
+    }
 })();

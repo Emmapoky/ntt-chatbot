@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from classifier import classify_prompt
+from scripts.classifier import classify_prompt
 
 app = Flask(__name__)
 
