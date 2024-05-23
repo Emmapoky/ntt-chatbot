@@ -40,7 +40,7 @@ const PopupChat = ({ handleUserMessage, messages, isChatbotTyping }) => {
     return { __html: rawMarkup };
  };
 
-return (
+ return (
   <div>
     <div className="popup-chat-button-wrapper">
       <div className="popup-chat-button-background">
@@ -87,7 +87,7 @@ return (
             <input
               type="text"
               className="popup-input-field"
-              placeholder="input text"
+              placeholder="Message Gemini..."
               value={inputValue}
               onChange={handleInputChange}
             />
