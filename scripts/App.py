@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from scripts.classifier import classify_prompt
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 
 @app.route('/check_prompt', methods=['POST'])
 def check_prompt():
@@ -14,3 +16,4 @@ def check_prompt():
 
 if __name__ == '__main__':
     app.run(debug=True)
+

@@ -212,9 +212,3 @@
     width: 20px;
     height: 20px;
   }
-  
-  /* Existing styles for header, profile-icon, etc. */
-  .popup-message-header, .popup-profile-icon, .popup-message-gemini .popup-profile-icon, .popup-message-user .popup-profile-icon {
-    /* existing styles */
-  }
-  

@@ -1,6 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
+import './TypingIndicator';
 
 import ChatContainer from './ChatContainer';
 import MainContainer from './MainContainer';
@@ -61,7 +62,7 @@ function App() {
     setIsChatbotTyping(true);
 
     try {
-      const response = await axios.post('http://localhost:5000/check_prompt', { prompt: userMessage });
+      const response = await axios.post('http://localhost:3000/check_prompt', { prompt: userMessage });
       const newMessage = { id: messages.length + 1, sender: 'Gemini', message: response.data.response };
 
       if (response.data.is_related) {

@@ -17,3 +17,4 @@ keywords = [chunk.text for chunk in doc.noun_chunks if len(chunk.text.split()) >
 # Save keywords to a file
 with open("nttdata_keywords.txt", "w") as file:
     file.write("\n".join(keywords))
+
