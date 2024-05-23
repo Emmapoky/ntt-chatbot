@@ -12,11 +12,17 @@ function isHtmlContentType(contentType) {
     return contentType && contentType.includes('text/html');
 }
 
+// Function to check if an element should be skipped
+function isElementVisible(element) {
+    const tag = element.tagName.toLowerCase();
+    return !(tag === 'style' || tag === 'script' || tag === 'head' || tag === 'title' || tag === 'meta' || tag === 'link' || tag === 'iframe');
+}
+
 async function extractTextFromUrl(url) {
     try {
         visitedUrls.add(url);
         const response = await axios.get(url);
-        
+
         // Check the content type of the response
         const contentType = response.headers['content-type'];
         if (!isHtmlContentType(contentType)) {
@@ -29,7 +35,7 @@ async function extractTextFromUrl(url) {
         let pageText = '';
         $('body *').each((index, element) => {
             const text = $(element).text().trim();
-            if (text && $(element).children().length === 0) {
+            if (isElementVisible(element) && text && $(element).children().length === 0) {
                 pageText += text + ' ';
             }
         });
