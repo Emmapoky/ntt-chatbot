@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from transformers import pipeline
 
 # Load a pre-trained model
