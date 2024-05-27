@@ -1,17 +1,16 @@
-//display an individual message
-//npm install marked
+ // Message.js
 import { marked } from 'marked';
 import React from 'react';
+
+export const getFormattedText = (text) => {
+  const rawMarkup = marked(text);
+  return { __html: rawMarkup };
+};
 
 const Message = ({ model }) => {
   const { sender, message } = model;
   const messageClass = sender === 'Gemini' ? 'message-gemini' : 'message-user';
   const senderTitle = sender === 'Gemini' ? 'Gemini' : 'User';
-
-  const getFormattedText = (text) => {
-    const rawMarkup = marked(text);
-    return { __html: rawMarkup };
-  };
 
   return (
     <div className={`message ${messageClass}`}>

@@ -229,8 +229,7 @@ div.header .MuiPaper-root.MuiMenu-paper {
   padding: 3rem 24rem;
   padding-right: 12rem;
   overflow-y: auto; /* scrollable message list */
-  scroll-padding-bottom: 140px; /* Additional bottom padding to create space above the input box */
-  padding-bottom: 120px;
+  margin-bottom: 60px;
   position: relative;
 }
 

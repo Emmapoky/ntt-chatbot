@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { marked } from 'marked';
+import { getFormattedText } from './Message';
 import SendIcon from '@mui/icons-material/ArrowCircleRightRounded';
 import ChatIcon from '@mui/icons-material/Chat'; // Import the ChatIcon
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import './PopupChat.css';
-import TypingIndicator from './TypingIndicator'; // Ensure you have the correct import for TypingIndicator
+import TypingIndicator from './TypingIndicator'; 
 
 const PopupChat = ({ handleUserMessage, messages, isChatbotTyping }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,11 +34,6 @@ const PopupChat = ({ handleUserMessage, messages, isChatbotTyping }) => {
       setInputValue('');
     }
   };
-
-  const getFormattedText = (text) => {
-    const rawMarkup = marked(text);
-    return { __html: rawMarkup };
- };
 
  return (
   <div>
