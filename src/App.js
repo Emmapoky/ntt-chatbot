@@ -1,13 +1,13 @@
+// changes on API
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
-import './TypingIndicator';
 
+import PopupChat from './PopupChat';
 import ChatContainer from './ChatContainer';
 import MainContainer from './MainContainer';
 import MessageInput from './MessageInput';
 import MessageList from './MessageList';
-import PopupChat from './PopupChat';
 import TypingIndicator from './TypingIndicator';
 
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
@@ -17,8 +17,6 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-
-import axios from 'axios';
 
 const genAI = new GoogleGenerativeAI(process.env.REACT_APP_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-pro" });
@@ -54,26 +52,24 @@ function App() {
   }, [messages]);
 
   const handleUserMessage = async (userMessage) => {
+    // Add the user's message to the messages array
     setMessages(currentMessages => [
       ...currentMessages,
       { id: currentMessages.length, sender: 'user', message: userMessage }
     ]);
-
+  
+    // Activate the typing indicator
     setIsChatbotTyping(true);
-
+  
     try {
-      const response = await axios.post('http://localhost:3000/check_prompt', { prompt: userMessage });
-      const newMessage = { id: messages.length + 1, sender: 'Gemini', message: response.data.response };
-
-      if (response.data.is_related) {
-        const prompt = userMessage;
-        const result = await model.generateContent(prompt);
-        const text = await result.response.text();
-        newMessage.message = text;
-      } else {
-        newMessage.message = "I'm sorry, I can only respond to questions related to NTT Data.";
-      }
-
+      const prompt = userMessage;
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      const text = await response.text(); 
+  
+      const newMessage = { id: messages.length + 1, sender: 'Gemini', message: text };
+      
+      // Update the messages array with the AI's response
       setMessages(currentMessages => [
         ...currentMessages,
         newMessage
@@ -155,8 +151,8 @@ function App() {
       </div>
   
       <div className="disclaimer">
-        Chatbot may display inaccurate info. 
-        <span className="privacy-link"> Your privacy & Chatbot Apps</span>
+        Chatbot may display inaccurate info, including about people, so double-check its responses. 
+        <span className="privacy-link">Your privacy & Chatbot Apps</span>
       </div>
   
       <MainContainer>

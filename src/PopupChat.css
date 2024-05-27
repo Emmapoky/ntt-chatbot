@@ -21,7 +21,7 @@
     display: flex;
     position: fixed;
     flex-direction: column;
-    bottom: 160px; /* Adjust to be above the popup button */
+    bottom: 170px; /* Adjust to be above the popup button */
     right: 40px;
     height: 400px;
     width: 251px; /* Adjust width as needed */
@@ -138,10 +138,11 @@
   .popup-input-container {
     display: flex;
     align-items: center;
+    position: fixed;
+    bottom: 130px;
     padding-left: 16px;
     padding-right: 17px;
     right: 40px;
-    bottom: 120px;
     background-color: #24214A;
     border-radius: 0 0 10px 10px;
   }
