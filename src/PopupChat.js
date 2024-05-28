@@ -4,6 +4,7 @@ import SendIcon from '@mui/icons-material/ArrowCircleRightRounded';
 import ChatIcon from '@mui/icons-material/Chat'; // Import the ChatIcon
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import './PopupChat.css';
+import './TypingIndicator.css';
 import TypingIndicator from './TypingIndicator'; 
 
 const PopupChat = ({ handleUserMessage, messages, isChatbotTyping }) => {
@@ -68,24 +69,18 @@ const PopupChat = ({ handleUserMessage, messages, isChatbotTyping }) => {
               </div>
             ))}
             {isChatbotTyping && (
-              <div className="popup-typing-indicator-container">
-                <div className="popup-loader-message-header">
-                  <div className="popup-profile-icon popup-loader-profile-icon"></div>
-                  <div className="popup-loader-message-text">Chatbot is typing...</div>
-                </div>
                 <TypingIndicator />
-              </div>
-            )}
-            <div ref={messagesEndRef} />
-          </div>
-          <form className="popup-input-container" onSubmit={handleSendMessage}>
-            <input
-              type="text"
-              className="popup-input-field"
-              placeholder="Message Gemini..."
-              value={inputValue}
-              onChange={handleInputChange}
-            />
+              )}
+              <div ref={messagesEndRef} />
+            </div>
+            <form className="popup-input-container" onSubmit={handleSendMessage}>
+              <input
+                type="text"
+                className="popup-input-field"
+                placeholder="Message Gemini..."
+                value={inputValue}
+                onChange={handleInputChange}
+              /> 
             <button type="submit" className="popup-send-button">
               <SendIcon />
             </button>

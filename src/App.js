@@ -2,6 +2,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
+import './TypingIndicator.css';
 
 import PopupChat from './PopupChat';
 import ChatContainer from './ChatContainer';

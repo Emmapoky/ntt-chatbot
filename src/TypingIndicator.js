@@ -1,4 +1,4 @@
-import './App.css';
+import './TypingIndicator.css';
 import React from 'react';
 
 const TypingIndicator = () => {

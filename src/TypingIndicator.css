@@ -1,71 +1,48 @@
-/* Typing indicator styles */
-.popup-typing-indicator-container {
-    display: flex;
-    align-items: center;
-    margin-top: 1rem; /* Adjust margin as needed */
-    margin-left: 2rem; /* Adjust to align with messages */
-  }
-  
-  .popup-loader-message-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 2px;
-  }
-  
-  .popup-loader-profile-icon {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #282358;
-    margin-right: 10px;
-  }
-  
-  .popup-loader-message-text {
-    color: #ffffff;
-  }
-  
-  /* Input container */
-  .popup-input-container {
-    display: flex;
-    align-items: center;
-    bottom: 140px;
-    position: fixed;
-    padding: 9px;
-    background-color: #2b2e3b;
-    border-radius: 0 0 10px 10px;
-  }
-  
-  .popup-input-field {
-    flex-grow: 1;
-    padding: 10px;
-    border-radius: 20px;
-    background-color: #3a3f51;
-    border: none;
-    color: #ffffff;
-    margin-right: 10px;
-  }
-  
-  .popup-send-button {
-    background-color: #B3ACFC;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-  
-  /* Adjustments for the message list inside the popup */
-  .popup-custom-message-list {
-    padding: 0rem;
-  }
-  
-  /* Adjustments for typing indicator inside the popup */
-  .popup-typing-indicator-container {
-    margin-top: 5px;
-    margin-left: 0;
-  }
-  
-  .popup-loader {
-    width: 20px;
-    height: 20px;
-  }
+/* TYPING INDICATOR */
+.typing-indicator-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Aligns the content to the left */
+  margin-top: 0px;
+  margin-left: 12rem; /* Add left margin for proper spacing */
+}
+
+.loader-message-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px; /* Space between header and loader */
+}
+
+.loader-message-text {
+  display: block;
+  color: #fff;
+  padding: 1px 1px; /* Padding inside loader bubble */
+  max-width: 80%; /* Maximum width of loader bubble */
+  word-wrap: break-word; /* Wrap text in the bubble */
+}
+
+.loader-profile-icon {
+  width: 30px; 
+  height: 30px; 
+  border-radius: 50%; /* Circle shape */
+  margin-right: 16px; /* Space between icon and loader text */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #282358; /* Same as .message-gemini */
+}
+
+.loader {
+  margin-left: 45px;
+  border: 5px solid #EAF0F6;
+  border-radius: 50%;
+  border-top: 5px solid #6F6792;
+  width: 5px;
+  height: 5px;
+  animation: spinner 4s linear infinite;
+}
+
+@keyframes spinner {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

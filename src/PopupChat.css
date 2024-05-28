@@ -75,6 +75,7 @@
     flex-grow: 1;
     overflow-y: auto;
     padding: 10px;
+    height: 280px;
   }
   
   /* Message styles */
@@ -110,11 +111,6 @@
   }
   
   /* Typing indicator styles */
-  .popup-typing-indicator-container {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-  }
   
   .popup-loader-message-header {
     display: flex;
@@ -208,6 +204,7 @@
   /* Adjustments for typing indicator inside the popup */
   .popup-typing-indicator-container {
     margin-top: 5px;
+    margin-right: 0;
     margin-left: 0;
   }
   
