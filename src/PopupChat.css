@@ -173,6 +173,7 @@
     padding: 3px;
     border-radius: 50%;
     cursor: pointer;
+    transition: none; /* Remove any transition animations */
   }
 
   .popup-send-button .MuiSvgIcon-root { /* This selector targets the SVG icon within the button */
@@ -203,9 +204,11 @@
   
   /* Adjustments for typing indicator inside the popup */
   .popup-typing-indicator-container {
-    margin-top: 5px;
-    margin-right: 0;
-    margin-left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligns the content to the left */
+    margin-top: 0px;
+    margin-left: 0; /* Remove the margin-left */
   }
   
   .popup-loader {

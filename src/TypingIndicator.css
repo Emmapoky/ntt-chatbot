@@ -28,7 +28,81 @@
   margin-right: 16px; /* Space between icon and loader text */
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-item/* Common Styles */
+  .typing-indicator-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  /* Main UI Styles */
+  .typing-indicator-container.main {
+    margin-top: 0;
+    margin-left: 12rem;
+  }
+  
+  .loader-message-header.main {
+    margin-bottom: 30px;
+  }
+  
+  .loader-profile-icon.main {
+    width: 30px;
+    height: 30px;
+    margin-right: 16px;
+  }
+  
+  .loader.main {
+    margin-left: 45px;
+    width: 5px;
+    height: 5px;
+  }
+  
+  .profile-name.main {
+    color: #fff;
+  }
+  
+  .loader.main {
+    border: 5px solid #EAF0F6;
+    border-radius: 50%;
+    border-top: 5px solid #6F6792;
+    animation: spinner 4s linear infinite;
+  }
+  
+  /* Popup Styles */
+  .typing-indicator-container.popup {
+    margin-top: 0;
+    margin-left: 0;
+  }
+  
+  .loader-message-header.popup {
+    margin-bottom: 2px;
+  }
+  
+  .loader-profile-icon.popup {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+  
+  .loader.popup {
+    width: 15px;
+    height: 15px;
+    border: 5px solid #EAF0F6;
+    border-radius: 50%;
+    border-top: 5px solid #6F6792;
+    animation: spinner 1s linear infinite;
+  }
+  
+  .profile-name.popup {
+    color: #fff;
+  }
+  
+  /* Keyframes */
+  @keyframes spinner {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  s: center;
   background-color: #282358; /* Same as .message-gemini */
 }
 
