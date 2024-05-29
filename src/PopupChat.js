@@ -68,9 +68,15 @@ const PopupChat = ({ handleUserMessage, messages, isChatbotTyping }) => {
                 </div>
               </div>
             ))}
-            {isChatbotTyping && (
+            isChatbotTyping && (
+              <div className="popup-typing-indicator-container">
+                <div className="popup-message-header">
+                  <div className="popup-profile-icon message-gemini"></div>
+                  <div className="popup-profile-name">Chatbot</div>
+                </div>
                 <TypingIndicator />
-              )}
+              </div>
+            )}
               <div ref={messagesEndRef} />
             </div>
             <form className="popup-input-container" onSubmit={handleSendMessage}>
