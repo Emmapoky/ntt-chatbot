@@ -22,13 +22,16 @@
 }
 
 .loader-profile-icon {
+  background-color: #282358; 
   width: 30px; 
   height: 30px; 
   border-radius: 50%; /* Circle shape */
   margin-right: 16px; /* Space between icon and loader text */
   display: flex;
   justify-content: center;
-  align-item/* Common Styles */
+}
+
+  /* Common Styles */
   .typing-indicator-container {
     display: flex;
     flex-direction: column;
@@ -102,9 +105,6 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
-  s: center;
-  background-color: #282358; /* Same as .message-gemini */
-}
 
 .loader {
   margin-left: 45px;

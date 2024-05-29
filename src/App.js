@@ -115,7 +115,7 @@ function App() {
                   <div className="profile-icon message-gemini"></div>
                   <div className="profile-name">Chatbot</div>
                 </div>
-                <TypingIndicator />
+                <TypingIndicator variant="main"  />
               </div>
             )}
           </div>

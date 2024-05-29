@@ -42,6 +42,7 @@
     display: flex;
     align-items: center;
     padding: 7px;
+    padding-left: 12px;
     background-color: #24214A;
     border-radius: 10px 10px 0 0;
   }
@@ -50,6 +51,19 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
+    background-color: #A098C4;
+  }
+
+  .popup-profile-icon.user {
+    background-color: #A098C4;
+    margin-right: 10px;
+  }
+
+  .popup-profile-icon.Gemini {
+    background-color: #282358;
+    padding-right: 10.62px;
+    margin-right: 10px;
+    width: 30px;
   }
 
   .popup-profile-info {
@@ -59,11 +73,13 @@
   .popup-profile-name {
     color: #ffffff;
     font-weight: bold;
+    margin-left:10px;
   }
   
   .popup-profile-status {
     color: #b0b0b0;
     font-size: 12px;
+    margin-left: 10px;
   }
   
   .popup-chat-settings {
