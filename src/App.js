@@ -135,6 +135,7 @@ function App() {
           aria-haspopup="true"
           disableRipple
           onClick={handleMenuOpen}
+          className={isMenuOpen ? 'header-button-active' : ''}
         >
           Gemini
           <KeyboardArrowDownIcon />
@@ -146,7 +147,7 @@ function App() {
           open={isMenuOpen}
           onClose={handleMenuClose}
           className="menu-paper"
-        >
+          MenuListProps={{ className: 'menu-list' }} >
           <MenuItem onClick={handleMenuClose}>
             Gemini
           </MenuItem>

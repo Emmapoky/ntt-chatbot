@@ -45,24 +45,30 @@ html, body {
 .header-menu {
   transition: none;
   background-color: #2f2f2f;
-  border-radius: 10px;
 }
 
-/* Specific menu item styling */
-.menu-item-white {
-  color: rgb(119, 119, 119);
+.css-6hp17o-MuiList-root-MuiMenu-list {
+  background-color: #252b39;
+  outline: none;
 }
 
 /* Ensures the header button stays highlighted when the dropdown is open */
 .header .MuiIconButton-root.Mui-focusVisible,
-.header .MuiIconButton-root:hover {
-  background-color: #1C202B; /* Background color for hover and active states */
+.header .MuiIconButton-root:hover,
+.header .MuiIconButton-root:active,
+.header .header-button-active {
+  background-color: #1C202B; /* Maintain background color when dropdown is active */
   border-radius: 4px; /* Rounded border shape */
 }
 
 /* Styles for the dropdown menu */
 div.header .MuiPaper-root.MuiMenu-paper {
   margin-top: 10px; /* Creates a separation between header and dropdown */
+}
+
+/* Specific class for additional customization if needed */
+.MuiMenuItem-root.MuiMenuItem-gutters {
+  color: white;
 }
 
 /* Style for the Gemini header button */
