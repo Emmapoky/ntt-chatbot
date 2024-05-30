@@ -2,6 +2,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
+import './Startup.css';
 import './TypingIndicator.css';
 
 import PopupChat from './PopupChat';
@@ -25,6 +26,7 @@ const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 function App() {
   const [isChatbotTyping, setIsChatbotTyping] = useState(false);
   const [messages, setMessages] = useState([]);
+  const [hasUserSentMessage, setHasUserSentMessage] = useState(false); // Track if user has sent a message
   const messagesEndRef = useRef(null);  // Reference to the end of the message list
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -53,8 +55,10 @@ function App() {
   }, [messages]);
 
   const handleUserMessage = async (userMessage) => {
-    // Add the user's message to the messages array
-    setMessages(currentMessages => [
+
+    setHasUserSentMessage(true); // Set state to true when user sends a message
+
+    setMessages(currentMessages => [ // Add the user's message to the messages array
       ...currentMessages,
       { id: currentMessages.length, sender: 'user', message: userMessage }
     ]);
@@ -155,15 +159,34 @@ function App() {
         Chatbot may display inaccurate info, including about people, so double-check its responses. 
         <span className="privacy-link">Your privacy & Chatbot Apps</span>
       </div>
-  
-      <MainContainer>
+
+      {!hasUserSentMessage && (
+        <div className="starter-page">
+          <div className="starter-content">
+            <div className="starter-icon"> </div>
+            <h1>How can I help you today?</h1>
+            <div className="starter-buttons">
+              <button className="starter-button">Help me pick an outfit</button>
+              <button className="starter-button">Write an email</button>
+              <button className="starter-button">Suggest fun activities</button>
+              <button className="starter-button">Write a thank-you note</button>
+              </div>
+          </div>
+          <div className="custom-message-input-container">
+            <MessageInput onSend={handleUserMessage} />
+          </div>
+        </div>
+      )}
+
+      {hasUserSentMessage && (
+        <MainContainer>
         <ChatContainer>
           <MessageList messages={messages} />
           {isChatbotTyping && (
-            <div className="typing-indicator-container">
-              <div className="loader-message-header">
+            <div className="typing-indicator-container main">
+              <div className="loader-message-header main">
               </div>
-              <TypingIndicator />
+              <TypingIndicator variant="main" />
             </div>
           )}
           <div ref={messagesEndRef} />
@@ -172,8 +195,9 @@ function App() {
           </div>
         </ChatContainer>
       </MainContainer>
-    </div>
-  );  
+    )}
+  </div>
+);  
 }
 
 export default App;
