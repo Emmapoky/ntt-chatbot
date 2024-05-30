@@ -19,7 +19,7 @@
 }
   
 .starter-content {
-  margin-bottom: 20px;
+  margin-bottom: 150px;
   text-align: center;
   color: #e5d8fc;
 }
@@ -39,7 +39,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  gap: 1px;
 }
   
 .starter-button {
