@@ -132,6 +132,7 @@ function App() {
           aria-label="more"
           aria-controls="long-menu"
           aria-haspopup="true"
+          disableRipple
           onClick={handleMenuOpen}
         >
           Gemini
@@ -156,7 +157,7 @@ function App() {
       </div>
   
       <div className="disclaimer">
-        Chatbot may display inaccurate info, including about people, so double-check its responses. 
+        Chatbot may display inaccurate info.  
         <span className="privacy-link">Your privacy & Chatbot Apps</span>
       </div>
 
@@ -166,11 +167,19 @@ function App() {
             <div className="starter-icon"> </div>
             <h1>How can I help you today?</h1>
             <div className="starter-buttons">
-              <button className="starter-button">Help me pick an outfit</button>
-              <button className="starter-button">Write an email</button>
-              <button className="starter-button">Suggest fun activities</button>
-              <button className="starter-button">Write a thank-you note</button>
-              </div>
+              <button className="starter-button">
+                <span className="bold">Help me pick</span>an outfit that would look good on camera
+              </button>
+              <button className="starter-button">
+                <span className="bold">Write an email</span>requesting a deadline extension for my project
+              </button>
+              <button className="starter-button">
+                <span className="bold">Suggest fun activities</span>to help me make new friends in a city
+              </button>
+              <button className="starter-button">
+                <span className="bold">Write a thank-you note</span>to out babysitter for last minute help
+              </button>
+            </div>
           </div>
           <div className="custom-message-input-container">
             <MessageInput onSend={handleUserMessage} />

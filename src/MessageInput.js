@@ -75,7 +75,7 @@ const MessageInput = ({ onSend }) => {
         {/* This inner div should act as the input area */}
       </div>
       <IconButton className="send-button" onClick={handleSend} aria-label="send">
-        <SendIcon />
+        <SendIcon disableRipple/>
       </IconButton>
     </div>
   );

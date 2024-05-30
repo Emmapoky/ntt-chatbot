@@ -21,7 +21,7 @@
 .starter-content {
   margin-bottom: 20px;
   text-align: center;
-  color: white;
+  color: #e5d8fc;
 }
   
 .starter-icon img { /*add an image*/
@@ -31,7 +31,7 @@
 }
   
 .starter-content h1 {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   margin-bottom: 20px;
 }
   
@@ -43,16 +43,22 @@
 }
   
 .starter-button {
-  background-color: #6F6792;
+  background-color: #252b39;
   color: white;
   border: none;
   padding: 10px 20px;
   margin: 5px;
   border-radius: 5px;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
   
-.starter-button:hover {
-  background-color: #9087DD;
+.starter-button .bold {
+  font-weight: bold;
 }
 
+.starter-button:hover {
+  background-color: #8f86dd;
+}

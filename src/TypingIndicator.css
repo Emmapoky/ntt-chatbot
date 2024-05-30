@@ -31,13 +31,6 @@
   justify-content: center;
 }
 
-  /* Common Styles */
-  .typing-indicator-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
   /* Main UI Styles */
   .typing-indicator-container.main {
     margin-top: 0;

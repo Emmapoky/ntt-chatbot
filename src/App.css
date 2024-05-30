@@ -7,6 +7,7 @@ html, body {
 
 /* APP HEADER COMPONENTS */
 .header {
+  transition: none;
   position: fixed;
   left: 0;
   right: 0;
@@ -42,6 +43,7 @@ html, body {
 
 /* Header customization */
 .header-menu {
+  transition: none;
   background-color: #2f2f2f;
   border-radius: 10px;
 }
@@ -110,7 +112,7 @@ div.header .MuiPaper-root.MuiMenu-paper {
 
 .sidebar-toggle-button svg.MuiSvgIcon-root {
   position: fixed;
-  z-index: 1100;
+  z-index: 2000;
   top: 50%; /* Adjust based on where you want it */
   left: 4;
   transform: translateY(-50%);
