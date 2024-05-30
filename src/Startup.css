@@ -9,6 +9,14 @@
   margin: 0 auto 20px auto;
 }  
 
+.starter-icon .MuiSvgIcon-root {
+  display: flex;
+  font-size: 2rem;
+  justify-content: center;
+  padding: 0px;
+  margin: 9px auto 20px auto;
+}
+
 .starter-page {
   display: flex;
   flex-direction: column;
@@ -24,10 +32,14 @@
   color: #e5d8fc;
 }
   
-.starter-icon img { /*add an image*/
-  width: 100px; /* Adjust size as needed */
-  height: auto;
-  margin-bottom: 20px;
+.starter-icon .MuiIconButton-root {
+    display: flex;
+    justify-content: center;
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%; /* Circle shape */
+    background-color: #282358; 
+    margin: 0 auto 20px auto;
 }
   
 .starter-content h1 {
@@ -36,10 +48,9 @@
 }
   
 .starter-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 0px;
 }
   
 .starter-button {

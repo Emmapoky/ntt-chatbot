@@ -14,6 +14,7 @@ import TypingIndicator from './TypingIndicator';
 
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Drawer from '@mui/material/Drawer';
+import StarterChatIcon from '@mui/icons-material/LensBlur';
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import IconButton from '@mui/material/IconButton';
@@ -100,7 +101,7 @@ function App() {
       />
       {/* Sidebar button */}
       <IconButton className="sidebar-toggle-button" onClick={toggleSidebar} aria-label="open sidebar">
-          <KeyboardArrowRightIcon />
+          <KeyboardArrowRightIcon/> 
       </IconButton>
       {/* Sidebar Drawer */}
       <Drawer
@@ -164,28 +165,30 @@ function App() {
       {!hasUserSentMessage && (
         <div className="starter-page">
           <div className="starter-content">
-            <div className="starter-icon"> </div>
-            <h1>How can I help you today?</h1>
-            <div className="starter-buttons">
-              <button className="starter-button">
-                <span className="bold">Help me pick</span>an outfit that would look good on camera
-              </button>
-              <button className="starter-button">
-                <span className="bold">Write an email</span>requesting a deadline extension for my project
-              </button>
-              <button className="starter-button">
-                <span className="bold">Suggest fun activities</span>to help me make new friends in a city
-              </button>
-              <button className="starter-button">
-                <span className="bold">Write a thank-you note</span>to out babysitter for last minute help
-              </button>
+            <div className="starter-icon"> 
+              <StarterChatIcon className="starter-chat-icon" />
             </div>
-          </div>
-          <div className="custom-message-input-container">
-            <MessageInput onSend={handleUserMessage} />
-          </div>
-        </div>
-      )}
+              <h1>How can I help you today?</h1>
+                <div className="starter-buttons">
+                  <button className="starter-button">
+                    <span className="bold">Help me pick</span>an outfit that would look good on camera
+                  </button>
+                  <button className="starter-button">
+                    <span className="bold">Write an email</span>requesting a deadline extension for my project
+                  </button>
+                  <button className="starter-button">
+                    <span className="bold">Suggest fun activities</span>to help me make new friends in a city
+                  </button>
+                  <button className="starter-button">
+                    <span className="bold">Write a thank-you note</span>to out babysitter for last minute help
+                  </button>
+                </div>
+              </div>
+              <div className="custom-message-input-container">
+                <MessageInput onSend={handleUserMessage} />
+              </div>
+            </div>
+          )}
 
       {hasUserSentMessage && (
         <MainContainer>
