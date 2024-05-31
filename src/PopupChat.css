@@ -42,7 +42,7 @@
     display: flex;
     align-items: center;
     padding: 7px;
-    padding-left: 12px;
+    padding-left: 20px;
     background-color: #24214A;
     border-radius: 10px 10px 0 0;
   }
@@ -150,15 +150,11 @@
   .popup-input-container {
     display: flex;
     align-items: center;
-    position: fixed;
-    bottom: 130px;
-    padding-left: 16px;
-    padding-right: 17px;
-    padding-top: 5px;
-    padding-bottom: 3px;
-    right: 40px;
-    background-color: #232149;
+    width: 100%; /* Make the input container take the full width of the parent */
+    padding: 5px 16px; /* Padding around the input container */
     border-radius: 0 0 10px 10px;
+    box-sizing: border-box; /* Ensure padding is included in the total width and height */
+    background-color: #232149;
   }
   
   .popup-input-field {
