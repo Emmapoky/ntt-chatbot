@@ -148,10 +148,11 @@
   
   /* Input container */
   .popup-input-container {
+    position: relative;
     display: flex;
     align-items: center;
     width: 100%; /* Make the input container take the full width of the parent */
-    padding: 5px 16px; /* Padding around the input container */
+    padding: 10px 45px 10px 10px; /* Padding around the input container */
     border-radius: 0 0 10px 10px;
     box-sizing: border-box; /* Ensure padding is included in the total width and height */
     background-color: #232149;
@@ -186,6 +187,8 @@
     border-radius: 50%;
     cursor: pointer;
     transition: none; /* Remove any transition animations */
+    position: absolute; /* Position the button absolutely */
+    right: 5px; /* Position it 5px to the right of the container */
   }
 
   .popup-send-button .MuiSvgIcon-root { /* This selector targets the SVG icon within the button */
