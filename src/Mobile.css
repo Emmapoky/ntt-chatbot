@@ -1,0 +1,83 @@
+/* For Mobile Devices */
+@media (max-width: 844px) {
+    .app-container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      position: relative;
+      background-color: transparent; /* Dark background color */
+    }
+  
+    .message-input-container {
+      display: flex;
+      align-items: center;
+      position: fixed;
+      bottom: 0;
+      left: 10%; 
+      justify-content: space-between;
+      transform: translateX(0); /* Remove the translateX for centering */
+      width: 94%; /* Adjusted to take full width with left and right padding */
+      padding-bottom: 37px; /* Increased padding for better touch experience */
+      background-color: #1C202B;
+      z-index: 10;
+      box-sizing: border-box; /* Ensure padding is included in the width */
+    }
+  
+    .input-field {
+      width: calc(100% - 52px); /* Adjusted for full width minus the send button */
+      flex-grow: 1;
+      padding: 21px 15px;
+      flex-shrink: 1;
+      flex-basis: 0%;
+      margin-right: 6px;
+      font-size: 1rem; /* Adjusted font size */
+      border-radius: 10px;
+      background-color: #252B39;
+      color: #A098C4; 
+      line-height: 1.2rem; /* Adjusted line height */
+      min-height: 10px;
+      max-height: 150px; /* Adjusted max height */
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      white-space: pre-wrap;
+      resize: none;
+      border: 1.7px solid #7b7b7b;
+      outline: none;
+      word-wrap: break-word; 
+      overflow-y: auto;
+    }
+  
+    .send-button {
+      background: none;
+      border: none;
+      padding: 0;
+      box-shadow: none;
+      transition: none;
+      outline: none;
+    }
+  
+    .send-button .MuiSvgIcon-root {
+      font-size: 2.5rem; /* Adjusted icon size */
+      transform: rotate(-90deg);
+      transition: none;
+    }
+
+    .popup-chat-button-wrapper {
+        position: fixed;
+        bottom: 60px;
+        right: 40px;
+        z-index: 1000;
+        cursor: pointer;
+      }
+      
+      .popup-chat-button-background {
+        background-color: #9087DD; /* Background color */
+        border-radius: 50%; /* Make it a circle */
+        padding:0.7rem; /* Adjust padding as needed */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+}

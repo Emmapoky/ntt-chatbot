@@ -2,6 +2,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
+import './Mobile.css';
 import './Startup.css';
 import './TypingIndicator.css';
 
@@ -160,7 +161,6 @@ function App() {
   
       <div className="disclaimer">
         Chatbot may display inaccurate info.  
-        <span className="privacy-link">Your privacy & Chatbot Apps</span>
       </div>
 
       {!hasUserSentMessage && (
