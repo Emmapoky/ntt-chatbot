@@ -6,7 +6,7 @@ const TypingIndicator = ({ variant }) => {
     <div className={`typing-indicator-container ${variant}`}>
       <div className="loader-message-header">
         <div className={`loader-profile-icon ${variant}`}></div>
-        <div className="profile-name">Gemini</div>
+        {variant !== 'popup' && <div className="profile-name">Gemini</div>}
       </div>
       <div className="loader-container">
         <div className="loader"></div>

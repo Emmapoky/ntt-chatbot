@@ -23,8 +23,8 @@
     flex-direction: column;
     bottom: 170px; /* Adjust to be above the popup button */
     right: 40px;
-    height: 370px;
-    width: 251px; /* Adjust width as needed */
+    height: 500px;
+    width: 300px; /* Adjust width as needed */
     z-index: 1100;
     background-color: #252b39;
     border-radius: 10px; /* Adjust border radius as needed */
@@ -51,18 +51,16 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
+    margin-right: 10px;
     background-color: #A098C4;
   }
 
   .popup-profile-icon.user {
     background-color: #A098C4;
-    margin-right: 10px;
   }
 
   .popup-profile-icon.Gemini {
     background-color: #282358;
-    padding-right: 10.62px;
-    margin-right: 10px;
     width: 30px;
   }
 
@@ -91,7 +89,8 @@
     flex-grow: 1;
     overflow-y: auto;
     padding: 10px;
-    height: 280px;
+    height: 410px;
+    box-sizing: border-box;
   }
   
   /* Message styles */
@@ -99,6 +98,11 @@
     display: flex;
     align-items: flex-start;
     margin-bottom: 10px;
+  }
+
+  .popup-message-header .popup-profile-icon {
+    align-self: flex-start; /* Align the icon to the top */
+    margin-right: 10px; /* Space between icon and text */
   }
   
   .popup-message-header {
@@ -113,8 +117,9 @@
     padding: 5px 10px;
     background-color: #3a3f51;
     border-radius: 10px;
-    max-width: 80%;
+    max-width: 70%; /* Set max-width to limit the text width */
     word-wrap: break-word;
+    flex-shrink: 0; /* Prevent text from pushing the icon */
   }
   
   /* User and Gemini message styles */
@@ -131,7 +136,7 @@
   .popup-loader-message-header {
     display: flex;
     align-items: center;
-    margin-bottom: 2px;
+    margin-bottom: 0;
   }
   
   .popup-loader-profile-icon {
@@ -222,7 +227,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* Aligns the content to the left */
-    margin-top: 0px;
+    margin-top: 0;
     margin-left: 0; /* Remove the margin-left */
   }
   
