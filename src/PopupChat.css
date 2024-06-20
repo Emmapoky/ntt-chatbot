@@ -51,18 +51,16 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
+    margin-right: 10px;
     background-color: #A098C4;
   }
 
   .popup-profile-icon.user {
     background-color: #A098C4;
-    margin-right: 10px;
   }
 
   .popup-profile-icon.Gemini {
     background-color: #282358;
-    padding-right: 10.62px;
-    margin-right: 10px;
     width: 30px;
   }
 
@@ -92,6 +90,7 @@
     overflow-y: auto;
     padding: 10px;
     height: 280px;
+    box-sizing: border-box;
   }
   
   /* Message styles */
@@ -113,8 +112,9 @@
     padding: 5px 10px;
     background-color: #3a3f51;
     border-radius: 10px;
-    max-width: 80%;
+    max-width: 70%; /* Set max-width to limit the text width */
     word-wrap: break-word;
+    flex-shrink: 0; /* Prevent text from pushing the icon */
   }
   
   /* User and Gemini message styles */
