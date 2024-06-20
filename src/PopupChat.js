@@ -73,12 +73,8 @@ const PopupChat = ({ handleUserMessage, messages, isChatbotTyping }) => {
               </div>
             ))}
             {isChatbotTyping && (
-              <div className="popup-typing-indicator-container">
-                <div className="popup-loader-message-header">
-                  <div className="popup-profile-icon popup-loader-profile-icon"></div>
-                  <div className="popup-loader-message-text">Chatbot is typing...</div>
-                </div>
-                <TypingIndicator />
+              <div>
+                <TypingIndicator variant="popup" />
               </div>
             )}
             <div ref={messagesEndRef} />

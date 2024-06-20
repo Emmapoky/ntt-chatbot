@@ -67,7 +67,7 @@
   /* Popup Styles */
   .typing-indicator-container.popup {
     margin-top: 0;
-    margin-left: 0;
+    margin-left: 2px;
   }
   
   .loader-message-header.popup {
@@ -75,9 +75,10 @@
   }
   
   .loader-profile-icon.popup {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     margin-right: 10px;
+    padding: 0;
   }
   
   .loader.popup {
@@ -87,10 +88,6 @@
     border-radius: 50%;
     border-top: 5px solid #6F6792;
     animation: spinner 1s linear infinite;
-  }
-  
-  .profile-name.popup {
-    color: #fff;
   }
   
   /* Keyframes */
