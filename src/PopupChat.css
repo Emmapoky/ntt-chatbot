@@ -52,6 +52,7 @@
     height: 30px;
     border-radius: 50%;
     margin-right: 10px;
+    margin-right: 10px;
     background-color: #A098C4;
   }
 
@@ -99,12 +100,12 @@
     align-items: flex-start;
     margin-bottom: 10px;
   }
-
+  
   .popup-message-header .popup-profile-icon {
     align-self: flex-start; /* Align the icon to the top */
     margin-right: 10px; /* Space between icon and text */
   }
-  
+
   .popup-message-header {
     display: flex;
     align-items: center;
