@@ -168,31 +168,27 @@ div.header .MuiPaper-root.MuiMenu-paper {
   z-index: 10;
 }
 
-.input-field {
-  width: calc(60% - 20%); 
-  flex-grow: 1;
-  padding: 21px 40px 21px;
-  flex-shrink: 1; /* Allows the input field to shrink if necessary */
-  flex-basis: 0%; /* Adjusts the base size before distributing remaining space */
-  margin-right: 6px;
-  font-size: 1.2rem;
+.input-field .MuiInputBase-root {
+  font-size: 1.1rem; /* Increase font size */
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #A098C4; /* Text color */
+  background-color: #252B39; /* Background color */
   border-radius: 20px;
-  background-color: #252B39;
-  color: #A098C4; /* Default text color set to white */
-  line-height: 27px;
-  min-height: 10px;
-  max-height: 200px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  white-space: pre-wrap;
-  resize: none;
-  width: 100%;
-  border: 1.7px solid #7b7b7b;
-  outline: none;
-  word-wrap: break-word; 
-  overflow-y: auto; 
+  padding-left: 25px;
+  padding-right: 90px;
+}
+
+.input-field .MuiOutlinedInput-root {
+  fieldset {
+    border-color: #7b7b7b; /* Border color */
+  }
+  &:hover fieldset {
+    border-color: #FFFFFF; /* Border color on hover */
+  }
+  &.Mui-focused fieldset {
+    border-color: #FFFFFF; /* Border color on focus */
+  }
 }
 
 .input-field:focus {

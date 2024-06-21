@@ -1,12 +1,12 @@
 import './App.css';
 import SendIcon from '@mui/icons-material/ArrowCircleRightRounded';
 import IconButton from '@mui/material/IconButton';
-import React, { useEffect, useRef, useState } from 'react';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import React, { useState } from 'react';
 
 const MessageInput = ({ onSend }) => {
-  const inputRef = useRef(null);
-  const placeholder = 'Message Gemini...';
-  const [isPlaceholder, setIsPlaceholder] = useState(true);
+  const [inputValue, setInputValue] = useState('');
 
   const handleSend = (event) => {
     if (event) {
@@ -15,69 +15,31 @@ const MessageInput = ({ onSend }) => {
       }
       event.preventDefault(); // Prevents the default form submission on Enter
     }
-    const text = inputRef.current.textContent.trim();
-    if (text && !isPlaceholder) { // Only send text if it's not the placeholder
+    const text = inputValue.trim();
+    if (text) {
       onSend(text);
-      inputRef.current.textContent = ''; // Clear the input field
-      setIsPlaceholder(true); // Reset the placeholder state
-    }
-    adjustHeight(); // Optionally adjust the height after sending
-  };
-
-  const adjustHeight = () => {
-    const textarea = inputRef.current;
-    if (!textarea) return;
-    textarea.style.height = 'auto'; // Reset the height
-    const computed = window.getComputedStyle(textarea);
-    const minHeight = parseInt(computed.getPropertyValue('min-height'), 1);
-    const height = Math.max(textarea.scrollHeight, minHeight);
-    textarea.style.height = `${height}px`; // Set to scrollHeight or minHeight
-  };
-
-  const handleFocus = () => {
-    if (isPlaceholder) {
-      inputRef.current.textContent = ''; // Clear placeholder text
-      setIsPlaceholder(false); // Update state to indicate this is not placeholder text
+      setInputValue(''); // Clear the input field
     }
   };
-
-  const handleBlur = () => {
-    if (inputRef.current.textContent.trim() === '') {
-      inputRef.current.textContent = placeholder; 
-      setIsPlaceholder(true); // Set state back to placeholder
-    }
-  };
-
-  useEffect(() => {
-    adjustHeight(true); // Adjust height initially and on window resize
-    if (inputRef.current && inputRef.current.textContent.trim() === '') {
-      inputRef.current.textContent = placeholder; 
-      setIsPlaceholder(true);
-    }
-    window.addEventListener('resize', () => adjustHeight(true));
-    return () => {
-      window.removeEventListener('resize', () => adjustHeight(true));
-    };
-  }, []);
 
   return (
-    <div className="message-input-container">
-      <div
-        ref={inputRef}
+    <Box component="form" className="message-input-container" noValidate autoComplete="off">
+      <TextField
         className="input-field"
-        contentEditable
-        placeholder={placeholder}
-        onInput={adjustHeight} // Adjust height when input changes
-        onFocus={handleFocus}
-        onBlur={handleBlur}
+        multiline
+        minRows={1}
+        maxRows={10}
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        placeholder="Message Gemini..."
+        variant="outlined"
         onKeyPress={handleSend} // Handle Enter key
-      >
-        {/* This inner div should act as the input area */}
-      </div>
+        fullWidth
+      />
       <IconButton className="send-button" onClick={handleSend} aria-label="send">
-        <SendIcon disableRipple/>
+        <SendIcon disableRipple />
       </IconButton>
-    </div>
+    </Box>
   );
 };
 

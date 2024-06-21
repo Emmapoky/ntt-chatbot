@@ -4,6 +4,8 @@ import SendIcon from '@mui/icons-material/ArrowCircleRightRounded';
 import ChatIcon from '@mui/icons-material/Chat'; // Import the ChatIcon
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import './PopupChat.css';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 import TypingIndicator from './TypingIndicator'; // Ensure you have the correct import for TypingIndicator
 
 const PopupChat = ({ handleUserMessage, messages, isChatbotTyping }) => {
