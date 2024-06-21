@@ -176,18 +176,21 @@ div.header .MuiPaper-root.MuiMenu-paper {
   background-color: #252B39; /* Background color */
   border-radius: 20px;
   padding-left: 25px;
-  padding-right: 90px;
+  padding-right: 84px;
 }
 
 .input-field .MuiOutlinedInput-root {
   fieldset {
     border-color: #7b7b7b; /* Border color */
+    border-width: 1.7px; 
   }
   &:hover fieldset {
     border-color: #FFFFFF; /* Border color on hover */
+    border-width: 1.7px; 
   }
   &.Mui-focused fieldset {
     border-color: #FFFFFF; /* Border color on focus */
+    border-width: 1.7px; 
   }
 }
 

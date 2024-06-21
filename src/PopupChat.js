@@ -81,23 +81,29 @@ const PopupChat = ({ handleUserMessage, messages, isChatbotTyping }) => {
             )}
             <div ref={messagesEndRef} />
           </div>
-          <form className="popup-input-container" onSubmit={handleSendMessage}>
-            <input
-              type="text"
-              className="popup-input-field"
-              placeholder="Message Gemini..."
-              value={inputValue}
-              onChange={handleInputChange}
-            />
-            <button type="submit" className="popup-send-button">
+          <Box component="form" className="popup-input-container" onSubmit={handleSendMessage} noValidate autoComplete="off">
+              <TextField
+                className="popup-input-field"
+                multiline
+                minRows={1}
+                maxRows={4}
+                value={inputValue}
+                onChange={handleInputChange}
+                placeholder="Message Gemini..."
+                variant="outlined"
+                fullWidth
+                InputProps={{
+                }}
+              />
+              <button type="submit" className="popup-send-button">
               <SendIcon />
             </button>
-          </form>
+            </Box>
+          </div>
         </div>
-      </div>
-    )}
-  </div>
-);
+      )}
+    </div>
+  );
 };
 
 export default PopupChat;

@@ -24,7 +24,7 @@
     bottom: 170px; /* Adjust to be above the popup button */
     right: 40px;
     height: 500px;
-    width: 300px; /* Adjust width as needed */
+    width: 320px; /* Adjust width as needed */
     z-index: 1100;
     background-color: #252b39;
     border-radius: 10px; /* Adjust border radius as needed */
@@ -51,7 +51,6 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    margin-right: 10px;
     margin-right: 10px;
     background-color: #A098C4;
   }
@@ -158,7 +157,7 @@
     display: flex;
     align-items: center;
     width: 100%; /* Make the input container take the full width of the parent */
-    padding: 10px 45px 10px 10px; /* Padding around the input container */
+    padding: 10px 10px 10px 10px; /* Padding around the input container */
     border-radius: 0 0 10px 10px;
     box-sizing: border-box; /* Ensure padding is included in the total width and height */
     background-color: #232149;
@@ -167,22 +166,36 @@
   .popup-input-field {
     flex-grow: 1;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 15px;
     background-color: #3a3f51;
     border: 1.7px solid #7b7b7b;
     color: #ffffff;
     margin-right: 10px;
     outline: none;
+    padding-top: 12px;
+    padding-bottom: 12px;
   }
   
-  .popup-input-field:focus {
-    border-color: #FFFFFF;
-    overflow-y: auto;
-    color: white;
+  .popup-input-field .MuiInputBase-root {
+    color: #A098C4; /* Text color */
+    background-color: #252B39; /* Background color */
+    border-radius: 15px;
+    padding-right: 60px;
   }
   
-  .popup-input-field::placeholder {
-    opacity: 1;
+  .popup-input-field .MuiOutlinedInput-root {
+    & fieldset {
+      border-color: #7b7b7b; /* Border color */
+      border-width: 1.7px; /* Consistent border thickness */
+    }
+    &:hover fieldset {
+      border-color: #7b7b7b; /* Same border color on hover */
+      border-width: 1.7px; /* Consistent border thickness */
+    }
+    &.Mui-focused fieldset {
+      border-color: #7b7b7b; /* Same border color on focus */
+      border-width: 1.7px; /* Consistent border thickness */
+    }
   }
 
   .popup-send-button {
@@ -190,6 +203,7 @@
     color: #3f3f3f;
     border: none;
     padding: 3px;
+    padding-right: 15px;
     border-radius: 50%;
     cursor: pointer;
     transition: none; /* Remove any transition animations */
@@ -198,7 +212,7 @@
   }
 
   .popup-send-button .MuiSvgIcon-root { /* This selector targets the SVG icon within the button */
-    font-size: 2.5rem; /* Increase the icon size */
+    font-size: 2.6rem; /* Increase the icon size */
     transform: rotate(-90deg);
     transition: none; /* Remove any transition animations */
   }
