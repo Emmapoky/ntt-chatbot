@@ -70,10 +70,6 @@
     margin-left: 2px;
   }
   
-  .loader-message-header.popup {
-    margin-bottom: 0px;
-  }
-  
   .loader-profile-icon.popup {
     width: 30px;
     height: 30px;
@@ -82,12 +78,11 @@
   }
   
   .loader.popup {
-    width: 15px;
-    height: 15px;
     border: 5px solid #EAF0F6;
     border-radius: 50%;
     border-top: 5px solid #6F6792;
     animation: spinner 1s linear infinite;
+    margin-left: 5px;
   }
   
   /* Keyframes */

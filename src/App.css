@@ -13,7 +13,7 @@ html, body {
   right: 0;
   display: flex;
   justify-content: flex-start;
-  padding-left: 22px;
+  padding-left: 20px;
   padding-top: 20px;
   z-index: 1000; 
 }
@@ -169,7 +169,7 @@ div.header .MuiPaper-root.MuiMenu-paper {
 }
 
 .input-field .MuiInputBase-root {
-  font-size: 1.1rem; /* Increase font size */
+  font-size: 1.17rem; /* Increase font size */
   padding-top: 20px;
   padding-bottom: 20px;
   color: #A098C4; /* Text color */

@@ -88,7 +88,7 @@
   .popup-message-list {
     flex-grow: 1;
     overflow-y: auto;
-    padding: 10px;
+    padding: 20px;
     height: 410px;
     box-sizing: border-box;
   }
@@ -114,7 +114,7 @@
   .popup-message-text {
     display: block;
     color: #ffffff;
-    padding: 5px 10px;
+    padding: 0px 15px;
     background-color: #3a3f51;
     border-radius: 10px;
     max-width: 70%; /* Set max-width to limit the text width */
@@ -163,24 +163,12 @@
     background-color: #232149;
   }
   
-  .popup-input-field {
-    flex-grow: 1;
-    padding: 10px;
-    border-radius: 15px;
-    background-color: #3a3f51;
-    border: 1.7px solid #7b7b7b;
-    color: #ffffff;
-    margin-right: 10px;
-    outline: none;
-    padding-top: 12px;
-    padding-bottom: 12px;
-  }
-  
   .popup-input-field .MuiInputBase-root {
     color: #A098C4; /* Text color */
     background-color: #252B39; /* Background color */
     border-radius: 15px;
     padding-right: 60px;
+    font-size: 1.1rem;
   }
   
   .popup-input-field .MuiOutlinedInput-root {
@@ -246,7 +234,3 @@
     margin-left: 0; /* Remove the margin-left */
   }
   
-  .popup-loader {
-    width: 20px;
-    height: 20px;
-  }
