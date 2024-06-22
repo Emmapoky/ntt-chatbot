@@ -243,8 +243,8 @@ div.header .MuiPaper-root.MuiMenu-paper {
   padding: 3rem 24rem;
   padding-right: 12rem;
   overflow-y: auto; /* scrollable message list */
-  margin-bottom: 0px;
   position: relative;
+  padding-bottom: 0;
 }
 
 /* INDIVIDUAL MESSAGE CONTAINER COMPONENTS */

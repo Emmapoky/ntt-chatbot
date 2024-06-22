@@ -1,12 +1,4 @@
 /* TYPING INDICATOR */
-.typing-indicator-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* Aligns the content to the left */
-  margin-top: 0px;
-  margin-left: 12rem; /* Add left margin for proper spacing */
-}
-
 .loader-message-header {
   display: flex;
   align-items: center;
@@ -35,6 +27,7 @@
   .typing-indicator-container.main {
     margin-top: 0;
     margin-left: 12rem;
+    padding-left: 193px;
   }
   
   .loader-message-header.main {

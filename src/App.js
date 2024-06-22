@@ -191,16 +191,12 @@ function App() {
             </div>
           )}
 
-      {hasUserSentMessage && (
-        <MainContainer>
+    {hasUserSentMessage && (
+      <MainContainer>
         <ChatContainer>
           <MessageList messages={messages} />
           {isChatbotTyping && (
-            <div className="typing-indicator-container main">
-              <div className="loader-message-header main">
-              </div>
-              <TypingIndicator variant="main" />
-            </div>
+            <TypingIndicator variant="main" />
           )}
           <div ref={messagesEndRef} />
           <div className="custom-message-input-container">

@@ -112,6 +112,7 @@
   }
   
   .popup-message-text {
+    font-size: 1rem;
     display: block;
     color: #ffffff;
     padding: 0px 15px;
