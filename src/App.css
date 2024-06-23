@@ -101,27 +101,33 @@ div.header .MuiPaper-root.MuiMenu-paper {
 }
 
 /* SIDEBAR TOGGLE BUTTON */
-.sidebar-toggle-button {
+.sidebar-container .drawer-button {
   position: fixed;
-  top: 50%; /* Center vertically */
-  left: 0;
-  transform: translateY(-50%); /* Adjust for exact center alignment */
-  z-index: 1500; /* Ensure it stays on top of other elements */
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #6F6792; /* Set the desired background color */
+  transform: translateY(1200%);
+  left: 0px;
+  z-index: 1500;
+  color: #7b7b7b;
+  border: none;
 }
 
-.sidebar-toggle-button svg.MuiSvgIcon-root {
-  position: fixed;
-  z-index: 2000;
-  top: 50%; /* Adjust based on where you want it */
-  left: 4;
-  transform: translateY(-50%);
+.sidebar-container .drawer-button:hover {
+  color: #8f86dd;
+}
+
+.drawer-paper {
+  background-color: #252b39 !important;
+}
+
+.list-item-text {
+  color: white !important; /* Set the text color to white */
+}
+
+.drawer-content {
+  padding: 20px;
+}
+
+.MuiBackdrop-root {
+  background-color: transparent !important;
 }
 
 /* Custom styles for sidebar and main content */
@@ -141,10 +147,6 @@ div.header .MuiPaper-root.MuiMenu-paper {
 
 .profile-icon-margin {
   margin-right: 10px;
-}
-
-.sidebar-toggle-button:hover {
-  color: #A098C4; 
 }
 
 /* CHAT CONTAINER */

@@ -118,8 +118,9 @@
     padding: 0px 15px;
     background-color: #3a3f51;
     border-radius: 10px;
-    max-width: 70%; /* Set max-width to limit the text width */
+    max-width: 200px; /* Set max-width to limit the text width */
     word-wrap: break-word;
+    overflow-wrap: break-word;
     flex-shrink: 0; /* Prevent text from pushing the icon */
   }
   
@@ -133,7 +134,6 @@
   }
   
   /* Typing indicator styles */
-  
   .popup-loader-message-header {
     display: flex;
     align-items: center;

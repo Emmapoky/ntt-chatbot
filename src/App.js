@@ -12,11 +12,9 @@ import MainContainer from './MainContainer';
 import MessageInput from './MessageInput';
 import MessageList from './MessageList';
 import TypingIndicator from './TypingIndicator';
+import Sidebar from './Sidebar';
 
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import Drawer from '@mui/material/Drawer';
 import StarterChatIcon from '@mui/icons-material/LensBlur';
-
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
@@ -31,14 +29,8 @@ function App() {
   const [hasUserSentMessage, setHasUserSentMessage] = useState(false); // Track if user has sent a message
   const messagesEndRef = useRef(null);  // Reference to the end of the message list
 
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
   const [anchorEl, setAnchorEl] = useState(null);
   const isMenuOpen = Boolean(anchorEl);
-  
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -95,39 +87,12 @@ function App() {
   
   return (
     <div className="app-container">
+      <Sidebar /> {/* Use Sidebar component */}
       <PopupChat 
         handleUserMessage={handleUserMessage} 
         messages={messages} 
         isChatbotTyping={isChatbotTyping}
       />
-      {/* Sidebar button */}
-      <IconButton className="sidebar-toggle-button" onClick={toggleSidebar} aria-label="open sidebar">
-          <KeyboardArrowRightIcon/> 
-      </IconButton>
-      {/* Sidebar Drawer */}
-      <Drawer
-        anchor="left"
-        open={sidebarOpen}
-        onClose={toggleSidebar}
-        className="drawer-paper"
-      >
-        <div className="drawer-content">
-          <div className="profile-icon-container">
-            <div className="profile-icon"></div>
-            <div className="profile-name">Chatbot</div>
-            {isChatbotTyping && (
-              <div className="typing-indicator-container">
-                <div className="message-header">
-                  <div className="profile-icon message-gemini"></div>
-                  <div className="profile-name">Chatbot</div>
-                </div>
-                <TypingIndicator variant="main"  />
-              </div>
-            )}
-          </div>
-          <p>History or other controls</p>
-        </div>
-      </Drawer>
   
       <div className="header">
         <IconButton
@@ -181,7 +146,7 @@ function App() {
                     <span className="bold">Suggest fun activities</span>to help me make new friends in a city
                   </button>
                   <button className="starter-button">
-                    <span className="bold">Write a thank-you note</span>to out babysitter for last minute help
+                    <span className="bold">Write a thank-you note</span>to thank babysitter for last minute help
                   </button>
                 </div>
               </div>
