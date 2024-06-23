@@ -29,7 +29,7 @@ const Sidebar = () => {
       onKeyDown={toggleDrawer(false)}
     >
       <List>
-        {['Saved', 'History'].map((text, index) => (
+        {['New Chat'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
@@ -42,7 +42,7 @@ const Sidebar = () => {
       </List>
       <Divider sx={{ borderColor: '#8f86dd' }} />
       <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
+        {['History', 'Trash', 'User'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>

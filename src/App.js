@@ -48,6 +48,15 @@ function App() {
     scrollToBottom();  // Scroll to bottom whenever messages update
   }, [messages]);
 
+  useEffect(() => {
+    // Add or remove the 'no-scroll' class to the body element based on hasUserSentMessage
+    if (!hasUserSentMessage) {
+      document.body.classList.add('no-scroll');
+    } else {
+      document.body.classList.remove('no-scroll');
+    }
+  }, [hasUserSentMessage]);
+  
   const handleUserMessage = async (userMessage) => {
 
     setHasUserSentMessage(true); // Set state to true when user sends a message

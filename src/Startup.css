@@ -73,3 +73,7 @@
 .starter-button:hover {
   background-color: #8f86dd;
 }
+
+.no-scroll {
+  overflow: hidden;
+}
