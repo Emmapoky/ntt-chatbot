@@ -1,6 +1,6 @@
 // changes on API
-import { GoogleGenerativeAI } from "@google/generative-ai";
 import React, { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
 import './App.css';
 import './Mobile.css';
 import './Startup.css';
@@ -19,9 +19,6 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-
-const genAI = new GoogleGenerativeAI(process.env.REACT_APP_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 function App() {
   const [isChatbotTyping, setIsChatbotTyping] = useState(false);
