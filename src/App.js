@@ -68,23 +68,26 @@ function App() {
   
     try {
       const prompt = userMessage;
-      const result = await model.generateContent(prompt);
-      const response = await result.response;
-      const text = await response.text(); 
+      const response = await axios.post('http://192.168.0.158:8000/v1/completions', {
+        prompt,
+        max_tokens: 128,
+        temperature: 1.0,
+        top_p: 1.0
+      });
+      const text = response.data.choices[0].text.trim();
   
-      const newMessage = { id: messages.length + 1, sender: 'Gemini', message: text };
-      
+      const newMessage = { id: messages.length + 1, sender: 'MLC LLM', message: text };
+  
       // Update the messages array with the AI's response
       setMessages(currentMessages => [
         ...currentMessages,
         newMessage
       ]);
-
     } catch (error) {
-      console.error("Error processing user message with Gemini API:", error);
+      console.error("Error processing user message with MLC LLM API:", error);
       setMessages(currentMessages => [
         ...currentMessages,
-        { id: currentMessages.length, sender: 'Gemini', message: "An error occurred, please try again." }
+        { id: currentMessages.length, sender: 'MLC LLM', message: "An error occurred, please try again." }
       ]);
     } finally {
       setIsChatbotTyping(false);
@@ -109,7 +112,7 @@ function App() {
           onClick={handleMenuOpen}
           className={isMenuOpen ? 'header-button-active' : ''}
         >
-          Gemini
+          MLC LLM
           <KeyboardArrowDownIcon />
         </IconButton>
         <Menu
@@ -121,7 +124,7 @@ function App() {
           className="menu-paper"
           MenuListProps={{ className: 'menu-list' }} >
           <MenuItem onClick={handleMenuClose}>
-            Gemini
+            MLC LLM
           </MenuItem>
           <MenuItem onClick={handleMenuClose}>
             <span className="gemini-advanced-text">Gemini Advanced</span>
