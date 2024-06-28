@@ -69,7 +69,7 @@ function App() {
     try {
       const prompt = userMessage;
       const response = await axios.post('http://192.168.0.158:8000/v1/completions', {
-        prompt,
+        prompt: UserMessage,
         max_tokens: 128,
         temperature: 1.0,
         top_p: 1.0
