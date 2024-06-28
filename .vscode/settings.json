@@ -1,2 +1,24 @@
 {
-}
+    "llm.modelId": "dist/TinyLlama-1.1B-Chat-v0.4-q4f32_1-MLC",
+    "llm.url": "http://192.168.0.158:8000/v1/completions",
+    "llm.backend": "mlc-llm",
+    "llm.requestBody": {
+      "best_of": 1,
+      "frequency_penalty": 0.0,
+      "presence_penalty": 0.0,
+      "logprobs": false,
+      "top_logprobs": 0,
+      "logit_bias": null,
+      "max_tokens": 128,
+      "seed": null,
+      "stop": null,
+      "suffix": null,
+      "temperature": 1.0,
+      "top_p": 1.0
+    },
+    "lldb.displayFormat": "auto",
+    "lldb.showDisassembly": "auto",
+    "lldb.dereferencePointers": true,
+    "lldb.consoleMode": "evaluate"
+  }
+  
