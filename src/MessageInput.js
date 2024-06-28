@@ -31,7 +31,7 @@ const MessageInput = ({ onSend }) => {
         maxRows={10}
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
-        placeholder="Message Gemini..."
+        placeholder="Message Chatbot..."
         variant="outlined"
         onKeyPress={handleSend} // Handle Enter key
         fullWidth

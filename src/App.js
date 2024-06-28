@@ -1,18 +1,17 @@
 // changes on API
 import React, { useEffect, useRef, useState } from 'react';
-import axios from 'axios';
 import './App.css';
 import './Mobile.css';
 import './Startup.css';
 import './TypingIndicator.css';
 
-import PopupChat from './PopupChat';
-import ChatContainer from './ChatContainer';
-import MainContainer from './MainContainer';
-import MessageInput from './MessageInput';
-import MessageList from './MessageList';
-import TypingIndicator from './TypingIndicator';
-import Sidebar from './Sidebar';
+import PopupChat from './PopupChat.js';
+import ChatContainer from './ChatContainer.js';
+import MainContainer from './MainContainer.js';
+import MessageInput from './MessageInput.js';
+import MessageList from './MessageList.js';
+import TypingIndicator from './TypingIndicator.js';
+import Sidebar from './Sidebar.js';
 
 import StarterChatIcon from '@mui/icons-material/LensBlur';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -55,29 +54,41 @@ function App() {
   }, [hasUserSentMessage]);
   
   const handleUserMessage = async (userMessage) => {
-
     setHasUserSentMessage(true); // Set state to true when user sends a message
 
     setMessages(currentMessages => [ // Add the user's message to the messages array
       ...currentMessages,
       { id: currentMessages.length, sender: 'user', message: userMessage }
     ]);
-  
+
     // Activate the typing indicator
     setIsChatbotTyping(true);
-  
+
     try {
-      const prompt = userMessage;
-      const response = await axios.post('http://192.168.0.158:8000/v1/completions', {
-        prompt: UserMessage,
-        max_tokens: 128,
-        temperature: 1.0,
-        top_p: 1.0
+      console.log('Sending request to MLC LLM API...');
+      const response = await fetch('http://192.168.0.158:8000/v1/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          prompt: userMessage,
+          max_tokens: 128,
+          temperature: 1.0,
+          top_p: 1.0,
+        }),
       });
-      const text = response.data.choices[0].text.trim();
-  
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log('Response from API:', data);
+      const text = data.choices[0].text.trim();
+
       const newMessage = { id: messages.length + 1, sender: 'MLC LLM', message: text };
-  
+
       // Update the messages array with the AI's response
       setMessages(currentMessages => [
         ...currentMessages,
