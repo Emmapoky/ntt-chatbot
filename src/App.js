@@ -54,15 +54,15 @@ function App() {
 
   const handleUserMessage = async (userMessage) => {
     setHasUserSentMessage(true); // Set state to true when user sends a message
-
+  
     setMessages(currentMessages => [ // Add the user's message to the messages array
       ...currentMessages,
       { id: currentMessages.length, sender: 'user', message: userMessage }
     ]);
-  
+    
     // Activate the typing indicator
     setIsChatbotTyping(true);
-
+  
     try {
       console.log('Sending request to MLC LLM API...');
       const response = await fetch('http://192.168.0.158:8000/v1/chat/completions', {
@@ -75,17 +75,17 @@ function App() {
           messages: [{ role: "user", content: userMessage }],
         }),
       });
-
+  
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-
+  
       const data = await response.json();
       console.log('Response from API:', data);
       const text = data.choices[0].message.content.trim();
-
-      const newMessage = { id: messages.length + 1, sender: 'MLC LLM', message: text };
-
+  
+      const newMessage = { id: messages.length + 1, sender: 'Gemini', message: text };
+  
       // Update the messages array with the AI's response
       setMessages(currentMessages => [
         ...currentMessages,
@@ -95,7 +95,7 @@ function App() {
       console.error("Error processing user message with MLC LLM API:", error);
       setMessages(currentMessages => [
         ...currentMessages,
-        { id: currentMessages.length, sender: 'MLC LLM', message: "An error occurred, please try again." }
+        { id: currentMessages.length, sender: 'Gemini', message: "An error occurred, please try again." }
       ]);
     } finally {
       setIsChatbotTyping(false);
