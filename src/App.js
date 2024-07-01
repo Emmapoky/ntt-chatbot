@@ -52,6 +52,23 @@ function App() {
       document.body.classList.remove('no-scroll');
     }
   }, [hasUserSentMessage]);
+
+  // Fetch initial data (GET request)
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const response = await fetch('http://192.168.0.158:8000/v1/messages');
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        setMessages(data);
+      } catch (error) {
+        console.error("Error fetching initial messages:", error);
+      }
+    };
+    fetchMessages();
+  }, []);
   
   const handleUserMessage = async (userMessage) => {
     setHasUserSentMessage(true); // Set state to true when user sends a message
@@ -102,6 +119,22 @@ function App() {
       ]);
     } finally {
       setIsChatbotTyping(false);
+    }
+  };
+  
+  // Delete message (DELETE request)
+  const deleteMessage = async (id) => {
+    try {
+      const response = await fetch(`http://192.168.0.158:8000/v1/messages/${id}`, {
+        method: 'DELETE',
+      });
+      if (response.status === 200) {
+        setMessages(currentMessages => currentMessages.filter(message => message.id !== id));
+      } else {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+    } catch (error) {
+      console.error("Error deleting message:", error);
     }
   };
   
