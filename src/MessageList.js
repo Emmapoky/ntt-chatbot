@@ -1,4 +1,3 @@
-// Render a list of message components
 import React from 'react';
 import Message from './Message';
 

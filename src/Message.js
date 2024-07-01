@@ -1,4 +1,3 @@
- // Message.js
 import { marked } from 'marked';
 import React from 'react';
 

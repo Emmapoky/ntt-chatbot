@@ -1,20 +1,19 @@
-// changes on API
 import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
 import './Mobile.css';
 import './Startup.css';
 import './TypingIndicator.css';
 
-import PopupChat from './PopupChat.js';
 import ChatContainer from './ChatContainer.js';
 import MainContainer from './MainContainer.js';
 import MessageInput from './MessageInput.js';
 import MessageList from './MessageList.js';
-import TypingIndicator from './TypingIndicator.js';
+import PopupChat from './PopupChat.js';
 import Sidebar from './Sidebar.js';
+import TypingIndicator from './TypingIndicator.js';
 
-import StarterChatIcon from '@mui/icons-material/LensBlur';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import StarterChatIcon from '@mui/icons-material/LensBlur';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -53,23 +52,6 @@ function App() {
     }
   }, [hasUserSentMessage]);
 
-  // Fetch initial data (GET request)
-  useEffect(() => {
-    const fetchMessages = async () => {
-      try {
-        const response = await fetch('http://192.168.0.158:8000/v1/messages');
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.json();
-        setMessages(data);
-      } catch (error) {
-        console.error("Error fetching initial messages:", error);
-      }
-    };
-    fetchMessages();
-  }, []);
-  
   const handleUserMessage = async (userMessage) => {
     setHasUserSentMessage(true); // Set state to true when user sends a message
 
@@ -77,22 +59,20 @@ function App() {
       ...currentMessages,
       { id: currentMessages.length, sender: 'user', message: userMessage }
     ]);
-
+  
     // Activate the typing indicator
     setIsChatbotTyping(true);
 
     try {
       console.log('Sending request to MLC LLM API...');
-      const response = await fetch('http://192.168.0.158:8000/v1/completions', {
+      const response = await fetch('http://192.168.0.158:8000/v1/chat/completions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          prompt: userMessage,
-          max_tokens: 128,
-          temperature: 1.0,
-          top_p: 1.0,
+          model: "HF://mlc-ai/TinyLlama-1.1B-Chat-v0.4-q4f32_1-MLC",
+          messages: [{ role: "user", content: userMessage }],
         }),
       });
 
@@ -102,7 +82,7 @@ function App() {
 
       const data = await response.json();
       console.log('Response from API:', data);
-      const text = data.choices[0].text.trim();
+      const text = data.choices[0].message.content.trim();
 
       const newMessage = { id: messages.length + 1, sender: 'MLC LLM', message: text };
 
@@ -121,23 +101,7 @@ function App() {
       setIsChatbotTyping(false);
     }
   };
-  
-  // Delete message (DELETE request)
-  const deleteMessage = async (id) => {
-    try {
-      const response = await fetch(`http://192.168.0.158:8000/v1/messages/${id}`, {
-        method: 'DELETE',
-      });
-      if (response.status === 200) {
-        setMessages(currentMessages => currentMessages.filter(message => message.id !== id));
-      } else {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-    } catch (error) {
-      console.error("Error deleting message:", error);
-    }
-  };
-  
+
   return (
     <div className="app-container">
       <Sidebar /> {/* Use Sidebar component */}
@@ -190,16 +154,16 @@ function App() {
               <h1>How can I help you today?</h1>
                 <div className="starter-buttons">
                   <button className="starter-button">
-                    <span className="bold">Help me pick</span>an outfit that would look good on camera
+                    <span className="bold">Help me pick</span> an outfit that would look good on camera
                   </button>
                   <button className="starter-button">
-                    <span className="bold">Write an email</span>requesting a deadline extension for my project
+                    <span className="bold">Write an email</span> requesting a deadline extension for my project
                   </button>
                   <button className="starter-button">
-                    <span className="bold">Suggest fun activities</span>to help me make new friends in a city
+                    <span className="bold">Suggest fun activities</span> to help me make new friends in a city
                   </button>
                   <button className="starter-button">
-                    <span className="bold">Write a thank-you note</span>to thank babysitter for last minute help
+                    <span className="bold">Write a thank-you note</span> to thank babysitter for last minute help
                   </button>
                 </div>
               </div>
@@ -209,22 +173,22 @@ function App() {
             </div>
           )}
 
-    {hasUserSentMessage && (
-      <MainContainer>
-        <ChatContainer>
-          <MessageList messages={messages} />
-          {isChatbotTyping && (
-            <TypingIndicator variant="main" />
-          )}
-          <div ref={messagesEndRef} />
-          <div className="custom-message-input-container">
-            <MessageInput onSend={handleUserMessage} />
-          </div>
-        </ChatContainer>
-      </MainContainer>
-    )}
-  </div>
-);  
+      {hasUserSentMessage && (
+        <MainContainer>
+          <ChatContainer>
+            <MessageList messages={messages}/>
+            {isChatbotTyping && (
+              <TypingIndicator variant="main" />
+            )}
+            <div ref={messagesEndRef} />
+            <div className="custom-message-input-container">
+              <MessageInput onSend={handleUserMessage} />
+            </div>
+          </ChatContainer>
+        </MainContainer>
+      )}
+    </div>
+  );
 }
 
 export default App;
