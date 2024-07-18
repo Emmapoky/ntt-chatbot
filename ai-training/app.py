@@ -1,3 +1,4 @@
+#cd /mnt/c/Users/jsway/Downloads/react-js-code-template
 from flask import Flask, request, jsonify
 import subprocess
 
@@ -6,7 +7,7 @@ app = Flask(__name__)
 @app.route('/train', methods=['POST'])
 def train_model():
     try:
-        result = subprocess.run(['python', 'ai-training/train_model.py'], capture_output=True, text=True)
+        result = subprocess.run(['python', 'train_model.py'], capture_output=True, text=True)
         return jsonify({'output': result.stdout, 'error': result.stderr})
     except Exception as e:
         return jsonify({'error': str(e)})
