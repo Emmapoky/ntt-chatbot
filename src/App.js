@@ -102,6 +102,22 @@ function App() {
     }
   };
 
+  // Function to trigger training 
+  const triggerTraining = async () => { 
+    try {
+      const response = await fetch('http://127.0.0.1:5000/train', {
+        method: 'POST', 
+        headers: { 
+          'Content-Type': 'application/json', 
+        }, 
+      }); 
+      const data = await response.json(); 
+      console.log(data); 
+    } catch (error) { 
+      console.error('Error triggering training:', error); 
+    } 
+  };
+
   return (
     <div className="app-container">
       <Sidebar /> {/* Use Sidebar component */}
@@ -187,6 +203,11 @@ function App() {
           </ChatContainer>
         </MainContainer>
       )}
+      
+      {/* Add a button to trigger training */}
+      <div style={{ textAlign: 'center', marginTop: '20px' }}>
+        <button onClick={triggerTraining}>Trigger Training</button>
+      </div>
     </div>
   );
 }
