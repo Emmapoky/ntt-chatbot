@@ -103,7 +103,7 @@ div.header .MuiPaper-root.MuiMenu-paper {
 /* SIDEBAR TOGGLE BUTTON */
 .sidebar-container .drawer-button {
   position: fixed;
-  transform: translateY(1200%);
+  transform: translateY(1000%);
   left: 0px;
   z-index: 1500;
   color: #7b7b7b;
